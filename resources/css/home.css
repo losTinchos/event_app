@@ -6,16 +6,17 @@
 }
 
 .event-card {
-    align-items: center;    
+    align-items: center;  
 }
 
 .event-description {
     margin-left: 1rem;
 }
-
 .plate {
     background-color: #291C60; 
     height: 5rem; 
     width: 7rem;
     margin-left: 1rem;
+    margin-right: 1rem;
 }
+

@@ -24,16 +24,16 @@
 
         <div class="container mx-auto">
             <header class="flex">
-                <figure><img style = "height: 5vh" src="https://github.com/losTinchos/event_app/blob/feature/main_view/resources/views/images/logo.png?raw=true" alt="logo"></figure>
+                <figure><img style = "height: 5vh" class= "mx-5 my-10" src="<?php echo asset('storage/images/logo.png')?>"></figure>
             </header>
             <main>
                 <div class="container slider">
-SLIDER
+                SLIDER
                 </div>
 
                 <ul>
-                    <li class="event-card inline-flex border-2 black">
-                        <div class="plate"><p>SQL/PHP</p></div>
+                    <li class="event-card inline-flex border-2 border-indigo-900 mx-3 my-3">
+                        <div class="plate"><p class="mx-7 my-4 font-bold text-lg" style="color: #00B3D5">SQL/ <br> PHP</p></div>
                         <div class="event-description flex flex-col">
                             <date>03/06/2021</date>
                             <h2>Google API</h2>
