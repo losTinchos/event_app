@@ -23,7 +23,7 @@
 
         <div class="container mx-auto">
             <header class="flex">
-                Logo
+            <img src="../views/images/logo.png" alt="logo">
             </header>
             <main>
                 <div>slider</div>
