@@ -1,4 +1,8 @@
-#slider {
+.logo {
+    height: 5vh;
+    padding: 4rem 0 2.5rem 3rem;
+}
+.slider {
     background-color: #291C60;
     height: 20vh;
 }
