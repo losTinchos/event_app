@@ -27,13 +27,21 @@
                 <figure><img style = "height: 5vh" src="https://github.com/losTinchos/event_app/blob/feature/main_view/resources/views/images/logo.png?raw=true" alt="logo"></figure>
             </header>
             <main>
-                <div class="container" id="slider">
+                <div class="container slider">
 SLIDER
                 </div>
 
                 <ul>
-                    <li class="inline-flex">
-                        <div style="background-color: #291C60; height: 10vw; width: 10vw"><p>SQL/PHP</p></div><h2>Google API</h2>
+                    <li class="event-card inline-flex border-2 black">
+                        <div class="plate"><p>SQL/PHP</p></div>
+                        <div class="event-description flex flex-col">
+                            <date>03/06/2021</date>
+                            <h2>Google API</h2>
+                            <p>29 places / 1 available</p>
+                            <p>These APIs allow the users to get information...</p>
+                            <a>Read More</a>
+                            <button>Cancel</button>
+                        </div>
                     </li>
                 </ul>
 

@@ -32088,6 +32088,27 @@ select {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+.slider {
+  background-color: #291C60;
+  height: 20vh;
+  width: auto;
+}
+
+.event-card {
+  align-items: center;
+}
+
+.event-description {
+  margin-left: 1rem;
+}
+
+.plate {
+  background-color: #291C60;
+  height: 5rem;
+  width: 7rem;
+  margin-left: 1rem;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
