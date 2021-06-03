@@ -1,8 +1,32 @@
+* {
+    font-family: Roboto, sans-serif;
+}
+h4 {
+    font-size: 14px;
+    line-height: 16px;
+}
+h2 {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 40px;
+}
+
 .logo {
-    height: 5vh;
-    padding: 4rem 0 2.5rem 3rem;
+    padding: 4rem 2rem 3rem;
+}
+.logo img {
+    height: 2rem;
 }
 .slider {
-    background-color: #291C60;
+    background-color: #291c60;
     height: 20vh;
+}
+.btn-yellow {
+    background-color: #f9f871;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #291c60;
+    border-color: #291c60;
 }
