@@ -3,4 +3,8 @@
 @import 'tailwindcss/utilities';
 @import 'home.css';
 @import 'general.css';
-@import 'components.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+

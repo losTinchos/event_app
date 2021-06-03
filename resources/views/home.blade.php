@@ -18,13 +18,13 @@
                 <figure><img style = "height: 5vh" src="https://github.com/losTinchos/event_app/blob/feature/main_view/resources/views/images/logo.png?raw=true" alt="logo"></figure>
             </header>
             <main>
-                <div class="container slider">
+                <div class="container slider bg-aqua">
 SLIDER
                 </div>
 
                 <ul>
                     <li class="inline-flex">
-                        <div style="background-color: #291C60; height: 10vw; width: 10vw"><p>SQL/PHP</p></div><h2>Google API</h2>
+                        <div ><p>SQL/PHP</p></div><h2>Google API</h2>
                     </li>
                 </ul>
 
