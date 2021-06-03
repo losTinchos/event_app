@@ -7,35 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EventPage</title>
   <link href="{{asset('css/app.css')}}" rel="stylesheet">
-  <style>
-  h2 {
-    font-family: Cabin;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 29px;
-    color: #56FBDB;
-  }
-  
-  h3 {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
-    color: #56FBDB;
-  }
-  button {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 21px;
-    text-align: center;
-
-    color: #291C60;
-  }
-  </style>
 </head>
 <body>
   <div class="container h-screen">
@@ -65,7 +36,6 @@
       <div class="flex justify-center ">
         <button style="background-color: #F9F871" class="border-2 border-black	w-32 h-8">Join Event</button>
       </div>
-      
       </section>
   </div>
 </body>

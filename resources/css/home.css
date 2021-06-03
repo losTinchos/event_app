@@ -1,4 +1,35 @@
-#slider {
-    background-color: #291C60;
+body {
+    font-family: 'Nunito', sans-serif;
+
+}
+h2 {
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: #56FBDB;
+  }
+  
+  h3 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #56FBDB;
+  }
+  button {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+
+    color: #291C60;
+  }
+.slider {
+    background-color: red;
     height: 20vh;
 }
