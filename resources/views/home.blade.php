@@ -19,7 +19,22 @@
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
     </head>
     <body>
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        
+
+        <div class="container mx-auto">
+            <header class="flex">
+                Logo
+            </header>
+            <main>
+                <div>slider</div>
+
+                <ul>events</ul>
+
+                <nav>icons</nav>
+            </main>
+        </div>
+
+<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -34,20 +49,5 @@
                 </div>
             @endif
         </div>
-
-        <div>
-            <header>
-                <h1>Logo</h1>
-            </header>
-
-            <main>
-                <div>slider</div>
-
-                <ul>events</ul>
-
-                <nav>icons</nav>
-            </main>
-        </div>
-
     </body>
 </html>
