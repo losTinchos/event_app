@@ -32103,6 +32103,13 @@ h2 {
   line-height: 40px;
 }
 
+p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+}
+
 .logo {
   padding: 4rem 2rem 3rem;
 }
@@ -32124,6 +32131,27 @@ h2 {
   text-align: center;
   color: #291c60;
   border-color: #291c60;
+}
+
+.slider {
+  background-color: #291c60;
+  height: 20vh;
+  width: auto;
+}
+
+.event-card {
+  align-items: center;
+}
+
+.event-description {
+  margin-left: 1rem;
+}
+
+.plate {
+  background-color: #291c60;
+  height: 5rem;
+  width: 7rem;
+  margin-left: 1rem;
 }
 
 .aqua {
