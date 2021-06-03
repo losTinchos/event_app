@@ -1,57 +1,72 @@
-<div class="flex">
-  <div class="flex-none w-48 relative">
-    <img src="/classic-utility-jacket.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventPage</title>
+  <link href="{{asset('css/app.css')}}" rel="stylesheet">
+  <style>
+  h2 {
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: #56FBDB;
+  }
+  
+  h3 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #56FBDB;
+  }
+  button {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+
+    color: #291C60;
+  }
+  </style>
+</head>
+<body>
+  <div class="container h-screen">
+      <section class="w-screen h-2/5 flex justify-center flex-col items-center" style="background-color: #291C60">
+      <h3>MASTER CLASS</h3>
+      <h2>PHP for noobs</h2>
+      <img class="h-44" src="/image/image1.png"/>
+      </section>
+      <section class="w-screen h-3/5">
+      <div class="flex space-x-8 justify-center pt-4">
+        <div style="background-color: #F9F871" class="w-36 flex justify-center">
+            <p>06/06/2021</p>
+        </div>
+        <div style="background-color: #56FBDB">
+            <p>26 places / 1 available</p>
+        </div>
+      </div>
+      <div class="p-8">
+        <p>Why PHP?</p><br>
+        <p>PHP runs on various platforms (Windows, Linux, Unix, Mac OS X, etc.)
+        PHP is compatible with almost all servers used today (Apache, IIS, etc.)
+        PHP supports a wide range of databases
+        PHP is free. Download it from the official PHP resource: www.php.net
+        PHP is easy to learn and runs efficiently on the server side
+      </p>
+      </div>
+      <div class="flex justify-center ">
+        <button style="background-color: #F9F871" class="border-2 border-black	w-32 h-8">Join Event</button>
+      </div>
+      
+      </section>
   </div>
-  <form class="flex-auto p-6">
-    <div class="flex flex-wrap">
-      <h1 class="flex-auto text-xl font-semibold">
-        Classic Utility Jacket
-      </h1>
-      <div class="text-xl font-semibold text-gray-500">
-        $110.00
-      </div>
-      <div class="w-full flex-none text-sm font-medium text-gray-500 mt-2">
-        In stock
-      </div>
-    </div>
-    <div class="flex items-baseline mt-4 mb-6">
-      <div class="space-x-2 flex">
-        <label>
-          <input class="w-9 h-9 flex items-center justify-center bg-gray-100 rounded-lg" name="size" type="radio" value="xs" checked>
-          XS
-        </label>
-        <label>
-          <input class="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="s">
-          S
-        </label>
-        <label>
-          <input class="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="m">
-          M
-        </label>
-        <label>
-          <input class="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="l">
-          L
-        </label>
-        <label>
-          <input class="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="xl">
-          XL
-        </label>
-      </div>
-      <div class="ml-auto text-sm text-gray-500 underline">Size Guide</div>
-    </div>
-    <div class="flex space-x-3 mb-4 text-sm font-medium">
-      <div class="flex-auto flex space-x-3">
-        <button class="w-1/2 flex items-center justify-center rounded-md bg-black text-white" type="submit">Buy now</button>
-        <button class="w-1/2 flex items-center justify-center rounded-md border border-gray-300" type="button">Add to bag</button>
-      </div>
-      <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300" type="button" aria-label="like">
-        <svg width="20" height="20" fill="currentColor">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
-        </svg>
-      </button>
-    </div>
-    <p class="text-sm text-gray-500">
-      Free shipping on all continental US orders.
-    </p>
-  </form>
-</div>
+</body>
+</html>
