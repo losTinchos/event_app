@@ -23,7 +23,10 @@
 
         <div class="container mx-auto">
             <header class="flex">
-                Logo
+                <figure>
+                    <img class="inline" 
+                    src="" alt="">
+                </figure>
             </header>
             <main>
                 <div>slider</div>
