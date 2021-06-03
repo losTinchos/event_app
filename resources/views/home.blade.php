@@ -32,13 +32,13 @@
                 </div>
 
                 <ul>
-                    <li class="event-card inline-flex border-2 border-indigo-900 mx-3 my-3">
+                    <li class="event-card inline-flex border-2 border-indigo-900 mx-3 my-3" style="width: 86vw">
                         <div class="plate"><p class="mx-7 my-4 font-bold text-lg" style="color: #00B3D5">SQL/ <br> PHP</p></div>
                         <div class="event-description flex flex-col">
-                            <date>03/06/2021</date>
-                            <h2>Google API</h2>
-                            <p>29 places / 1 available</p>
-                            <p>These APIs allow the users to get information...</p>
+                            <date class="flex justify-end mr-2">03/06/2021</date>
+                            <h2 class="font-bold text-2xl">Google API</h2>
+                            <p style="background-color: #D6FEF6; width: 10.2rem">29 places / 1 available</p>
+                            <p>These APIs allow the <br>users to get information...</p>
                             <a>Read More</a>
                             <button>Cancel</button>
                         </div>
