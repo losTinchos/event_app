@@ -18,7 +18,7 @@
                 <figure><img style = "height: 5vh" src="https://github.com/losTinchos/event_app/blob/feature/main_view/resources/views/images/logo.png?raw=true" alt="logo"></figure>
             </header>
             <main>
-                <div class="container slider bg-aqua">
+                <div class="container slider bg-aqua-light">
 SLIDER
                 </div>
 
