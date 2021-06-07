@@ -1,29 +1,37 @@
+.logo {
+    padding: 4rem 2rem 3rem;
+}
+.logo img {
+    height: 2rem;
+}
 body {
-    font-family: "Nunito", sans-serif;
+    font-family: Roboto, sans-serif;
 }
 h2 {
-    font-family: Cabin;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 29px;
-    color: #56fbdb;
+    font-family: Cabin, sans-serif;
+    line-height: 40px;
 }
-
 h3 {
-    font-family: Roboto;
     font-style: normal;
-    font-weight: normal;
     font-size: 14px;
     line-height: 16px;
-    color: #56fbdb;
 }
-button {
-    font-family: Roboto;
+h4 {
+    font-size: 14px;
+    line-height: 16px;
+}
+p {
+    font-style: normal;
+    font-size: 16px;
+    line-height: 19px;
+}
+/* .btn {
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
     line-height: 21px;
     text-align: center;
-    color: #291c60;
+} */
+.places {
+    width: 10.2rem;
 }
