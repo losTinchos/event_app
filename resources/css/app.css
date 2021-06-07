@@ -2,12 +2,4 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import 'home.css';
-<<<<<<< HEAD
-@import 'general.css';
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-=======
 @import 'colors.css'
->>>>>>> feature/main_view
