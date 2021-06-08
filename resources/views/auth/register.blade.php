@@ -48,7 +48,7 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="mt-24 bg-aqua-default">
+                <x-button class="mt-20 bg-aqua">
                     {{ __('Register') }}
                 </x-button>
             </div>
