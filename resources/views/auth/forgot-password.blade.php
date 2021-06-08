@@ -4,7 +4,7 @@
             <x-t-arrow />
         </a>
         <x-slot name="logo">
-            <x-logo-application />
+            <x-t-logo-application />
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">

@@ -1,7 +1,11 @@
 <x-guest-layout>
     <x-auth-card >
+        <a href="/event">
+            <x-t-arrow />
+        </a>
+
         <x-slot name="logo">
-            <x-logo-application />
+            <x-t-logo-application />
         </x-slot>
 
         <!-- Session Status -->
