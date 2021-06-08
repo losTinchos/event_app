@@ -2,4 +2,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import 'home.css';
-@import 'general.css'
+@import 'general.css';
+@import 'components.css';
+
+
