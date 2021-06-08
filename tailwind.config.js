@@ -25,11 +25,5 @@ module.exports = {
             DEFAULT: "#92201C",
         },
     },
-
-    },
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
-}
+    plugins: [],
+};

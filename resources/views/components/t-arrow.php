@@ -1,0 +1,1 @@
+<img class="absolute h-8 inset-8" src="<?php echo asset('storage/images/arrow.png'); ?>" alt="arrow don't work"/>
