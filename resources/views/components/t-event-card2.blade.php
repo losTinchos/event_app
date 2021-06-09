@@ -1,5 +1,5 @@
 <li class="event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
-    <div class="bg-blue flex items-center ml-4 h-24 w-36">
+    <div class="bg-blue-light flex items-center ml-4 h-24 w-36">
         <p class="font-bold text-xl text-blue-dark" style="margin: auto">SQL/<br>PHP</p>
     </div>
     <div class="m-2 pl-2">

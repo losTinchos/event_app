@@ -15,11 +15,11 @@
 
 <body>
     <div class="container h-screen m-auto">
-        <header class="flex items-center">
+        <header style="height: 10vh" class="flex items-center">
             <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>" alt="logo">
         </header>
-        <main>
-            <div class="inline-flex container p-4 bg-blue-dark">
+        <main style="height: 90vh">
+            <div class="inline-flex container p-4 bg-blue-dark" style="height: 25vh">
                 <img class="h-28 p-3 pt-5"
                     src="<?php echo asset('storage/images/gear.png'); ?>" alt="">
                 <div class="flex-1">
@@ -30,15 +30,15 @@
                     <x-t-btn-yellow></x-t-btn-yellow>
                 </div>
             </div>
-
-            <ul class="relative container overflow-auto h-96">
-                <x-t-event-card1></x-t-event-card1>
-                <x-t-event-card2></x-t-event-card2>
-                <x-t-event-card1></x-t-event-card1>
-                <x-t-event-card1></x-t-event-card1>
-            </ul>
-
-            <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around bottom-0">
+            <div class="overflow-y-auto" style="height: 55vh">
+                <ul class="relative container flex flex-wrap justify-center">
+                    <x-t-event-card1></x-t-event-card1>
+                    <x-t-event-card2></x-t-event-card2>
+                    <x-t-event-card1></x-t-event-card1>
+                    <x-t-event-card1></x-t-event-card1>
+                </ul>
+            </div>  
+            <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around bottom-0" style="height: 10vh">
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-dark" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
