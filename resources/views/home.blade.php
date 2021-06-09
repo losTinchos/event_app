@@ -13,17 +13,14 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body class="h-screen">
-    <div class="container mx-auto">
-        <header class="flex">
-            <figure class="logo"><img
-                    src="<?php echo asset('storage/images/logo.png'); ?>" alt="logo">
-            </figure>
+<body>
+    <div class="container h-screen m-auto">
+        <header class="flex items-center">
+            <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>" alt="logo">
         </header>
         <main>
-            <h4>POPULAR EVENTS</h4>
             <div class="inline-flex container p-4 bg-blue-dark">
-                <img class="h-20 p-3 pt-5"
+                <img class="h-28 p-3 pt-5"
                     src="<?php echo asset('storage/images/gear.png'); ?>" alt="">
                 <div class="flex-1">
                     <p class="text-aqua text-right">03/06/2021</p>
@@ -41,7 +38,7 @@
                 <x-t-event-card1></x-t-event-card1>
             </ul>
 
-            <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around absolute bottom-0">
+            <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around bottom-0">
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-dark" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -95,4 +92,3 @@
 </body>
 
 </html>
-// comment
