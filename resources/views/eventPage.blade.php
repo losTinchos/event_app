@@ -13,7 +13,7 @@
       <section class="w-screen h-2/5 flex justify-center flex-col items-center bg-blue-dark">
       <h3>MASTER CLASS</h3>
       <h2>PHP for noobs</h2>
-      <img class="h-44" src="<?php echo asset('storage/images/image1.png')?>" />
+      <img class="h-44" src="<?php echo asset('storage/images/coding.png')?>" />
       </section>
       <section class="w-screen h-3/5">
       <div class="flex space-x-8 justify-center pt-4">
