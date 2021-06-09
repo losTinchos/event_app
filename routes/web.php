@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::resource('events', EventController::class);
 
 Route::get('/', function () {
     return view('home');
@@ -25,4 +28,8 @@ require __DIR__.'/auth.php';
 
 Route::get('/event', function () {
     return view('eventPage');
+});
+
+Route::get('/index', function () {
+    return view('events.index');
 });
