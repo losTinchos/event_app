@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,5 @@ require __DIR__.'/auth.php';
 Route::get('/event', function () {
     return view('eventPage');
 });
+
+Route::get('/home', [EventController::class, "index"])->name('home');
