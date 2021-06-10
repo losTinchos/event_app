@@ -34,8 +34,9 @@
                 </div>
             </div>
 
-            @foreach ($events as $event)
+            
             <ul class="relative container overflow-auto h-96">
+                @foreach ($events as $event)
                 <li class="event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
                     <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
                         <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
@@ -67,8 +68,9 @@
                         </div>
                     </div>
                 </li>
+                @endforeach
             </ul>
-            @endforeach
+            
                 
                 {{-- <x-t-event-card1></x-t-event-card1>
                 <x-t-event-card2></x-t-event-card2>
