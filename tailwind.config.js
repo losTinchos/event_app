@@ -7,7 +7,6 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
-            // Our custom color palette
             colors: {
                 blue: {
                     dark: "#291C60",
@@ -21,12 +20,14 @@ module.exports = {
                 yellow: {
                     DEFAULT: "#F9F871",
                 },
+                red: {
+                    DEFAULT: "#92201C",
+                },
             },
         },
     },
     variants: {
         extend: {},
     },
-
-    plugins: [require('@tailwindcss/forms')],
-git };
+    plugins: [],
+};

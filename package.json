@@ -14,11 +14,14 @@
         "alpinejs": "^2.7.3",
         "autoprefixer": "^10.2.6",
         "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
+        "laravel-mix": "^6.0.19",
         "lodash": "^4.17.19",
         "postcss": "^8.3.0",
-        "postcss-import": "^12.0.1",
-        "tailwindcss": "^2.0.2"
+        "postcss-import": "^14.0.2",
+        "tailwindcss": "^2.0.4",
+        "webpack": "^5.38.1"
     },
-    "dependencies": {}
+    "peerDependencies": {
+        "postcss": "^8.0.0"
+    }
 }
