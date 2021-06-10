@@ -18,6 +18,10 @@ class CreateEventsUsers extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('event_id');
+            $table->foreign('event_id')->references('id')->on('events')
+            ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -8,5 +8,18 @@ use App\Models\User;
 
 class Event extends Model
 {
-    use HasFactory;
+    $user = User::find(1);
+
+    foreach ($user->events as event)
+    {
+
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'events_users');
+    }
+
+
+    
 }
