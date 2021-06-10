@@ -46,10 +46,10 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
-    {
-        //
-    }
+    public function show(Event $event) {
+        
+        return view('eventPage', ['event' => $event]);
+   }
 
     /**
      * Show the form for editing the specified resource.

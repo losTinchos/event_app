@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-auth-card >
-        <a href="/event">
+        <a href="{{ url()->previous()}}">
             <x-t-arrow />
         </a>
 
