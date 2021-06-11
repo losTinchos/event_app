@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Event;
+use App\Models\Rol;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class EventFactory extends Factory
+class RolFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Event::class;
+    protected $model = Rol::class;
 
     /**
      * Define the model's default state.
@@ -23,11 +23,8 @@ class EventFactory extends Factory
     public function definition()
     {
         return [
-            'title'=>$this->faker->company(),
-            'description'=>$this->faker->name(),
-            'full_description'=>$this->faker->text(),
-            'image'=>$this->faker->imageUrl(),
-            
+            'administrator'=>$this->faker->name(),
+            'user'=>$this->faker->name(),
         ];
     }
 }
