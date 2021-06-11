@@ -30,4 +30,6 @@ Route::get('/event', function () {
 //Auth::routes();
 
 Route::get('/home', [EventController::class, "index"])->name('home');
+Route::get('/create', [EventController::class, "create"])->name('create');
+
 //Route::get('/home', [EventController::class, "index"])->middleware('auth');
