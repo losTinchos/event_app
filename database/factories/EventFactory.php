@@ -27,7 +27,6 @@ class EventFactory extends Factory
             'description'=>$this->faker->name(),
             'full_description'=>$this->faker->text(),
             'image'=>$this->faker->imageUrl(),
-            'full_description'=>$this->faker->text(),
             'date'=>$this->faker->time()
         ];
     }
