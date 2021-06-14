@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,6 @@ use App\Http\Controllers\EventController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -24,8 +22,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/event', function () {
-    return view('eventPage');
-});
+Route::get('/event/{event}' , [EventController::class , 'show'])->name('event.show');
 
 Route::get('/', [EventController::class, "index"])->name('home');
+Route::get('/create', [EventController::class, "create"])->name('create');
+

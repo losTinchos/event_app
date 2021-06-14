@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Event;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
