@@ -54,7 +54,6 @@
                 <x-button class="mt-40 bg-blue-light ">
                     {{ __('Log in') }}
                 </x-button>
-
             </div>
                 
         </form>
