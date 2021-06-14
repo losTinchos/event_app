@@ -14,9 +14,9 @@ use App\Http\Controllers\EventController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,4 +28,4 @@ Route::get('/event', function () {
     return view('eventPage');
 });
 
-Route::get('/home', [EventController::class, "index"])->name('home');
+Route::get('/', [EventController::class, "index"])->name('home');
