@@ -14,13 +14,19 @@
 </head>
 
 <body>
-    <div class="container h-screen m-auto">
+    <div class="h-full w-full">
         <header style="height: 10vh" class="flex items-center">
             <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>" alt="logo">
         </header>
         <main style="height: 90vh">
+<<<<<<< HEAD
             <div class="inline-flex container p-4 bg-blue-dark" style="height: 25vh">
                 <img class="h-28 p-3 pt-5" src="<?php echo asset('storage/images/gear.png'); ?>" alt="">
+=======
+            <div class="inline-flex w-full p-4 bg-blue-dark" style="height: 25vh">
+                <img class="h-28 p-3 pt-5"
+                    src="<?php echo asset('storage/images/gear.png'); ?>" alt="">
+>>>>>>> feature/show
                 <div class="flex-1">
                     <p class="text-aqua text-right">03/06/2021</p>
                     <h4 class="text-aqua">MASTER CLASS</h4>
@@ -29,25 +35,36 @@
                     <x-t-btn-yellow></x-t-btn-yellow>
                 </div>
             </div>
+<<<<<<< HEAD
 
 
             <ul class="relative container overflow-auto h-96">
                 @foreach ($events as $event)
                 <li class="event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
+=======
+            <div style="height: 55vh">
+            <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full">
+            <!--bg-blue-dark bg-blue-->
+                @foreach ($events as $event)
+                <li style="width: 24rem;" class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
+>>>>>>> feature/show
                     <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
                         <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
                     </div>
-                    <div class="m-2 pl-2">
+                    <div class="w-full m-2 pl-2">
                         <p class="text-right">03/06/2021</p>
                         <h2 class="font-bold text-xl">{{$event->title}}</h2>
                         <p class="bg-aqua-light" style="width: fit-content">29 places / 1 available</p>
                         <p>{{$event->description}}</p>
                         <div class="inline-flex space-x-10">
-                            <button class="text-blue font-bold">Read More</button>
+                            <a href="/event/{{ $event->id }}">
+                                <button class="text-blue font-bold">Read More</button>
+                            </a>
                             <button class="text-red font-bold">Cancel</button>
                         </div>
                     </div>
                 </li>
+<<<<<<< HEAD
 
                 <li class="event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
                     <div class="bg-blue flex items-center ml-4 h-24 w-36">
@@ -69,6 +86,13 @@
 
 
             {{-- <x-t-event-card1></x-t-event-card1>
+=======
+            @endforeach
+         
+            </ul>
+            </div>
+                {{-- <x-t-event-card1></x-t-event-card1>
+>>>>>>> feature/show
                 <x-t-event-card2></x-t-event-card2>
                 <x-t-event-card1></x-t-event-card1>
                 <x-t-event-card1></x-t-event-card1> --}}

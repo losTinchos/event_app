@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-auth-card>
-        <a href="{{ route('login') }}"">
+        <a href="{{ url()->previous()}}">
             <x-t-arrow />
         </a>
         <x-slot name="logo">

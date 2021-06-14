@@ -1,1 +1,3 @@
-<img class="absolute h-8 inset-8" src="<?php echo asset('storage/images/arrow.png'); ?>" alt="arrow don't work"/>
+<svg xmlns="http://www.w3.org/2000/svg" class="absolute h-8 inset-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+  </svg>

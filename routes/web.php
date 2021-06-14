@@ -16,20 +16,14 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
-Route::get('/event', function () {
-    return view('eventPage');
-});
+Route::get('/event/{event}' , [EventController::class , 'show'])->name('event.show');
 
-//Auth::routes();
-
-Route::get('/home', [EventController::class, "index"])->name('home');
+Route::get('/', [EventController::class, "index"])->name('home');
 Route::get('/create', [EventController::class, "create"])->name('create');
 
-//Route::get('/home', [EventController::class, "index"])->middleware('auth');
