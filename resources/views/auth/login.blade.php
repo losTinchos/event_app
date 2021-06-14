@@ -51,7 +51,7 @@
                 <a class="underline text-md text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
                     {{ __('Register') }}
                 </a>
-                <x-button class="mt-40 bg-blue-light ">
+                <x-button class="mt-40 bg-blue-light">
                     {{ __('Log in') }}
                 </x-button>
             </div>
