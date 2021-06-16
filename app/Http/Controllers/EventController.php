@@ -16,6 +16,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
+        $highlights = Event::find('highlights'); //return array
         return view('home', ['events'=>$events]);
 
     }
