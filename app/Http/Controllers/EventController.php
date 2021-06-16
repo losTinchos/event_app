@@ -52,7 +52,18 @@ class EventController extends Controller
         $event = $user->events;
         return view('myEvents', ['event_user' => $event]);
    }
-
+   public function singUpEvent($id) {
+        $userID = Auth::user()->id;
+        $newEventID = Event::find($id);
+        $newEventID->users()->attach($userID);
+        return redirect()->route('home');
+   }
+   public function leaveEvent($id) {
+    $userID = Auth::user()->id;
+    $newEventID = Event::find($id);
+    $newEventID->users()->detach($userID);
+    return redirect()->route('myEvents');
+   }
     /**
      * Show the form for editing the specified resource.
      *
