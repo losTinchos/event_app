@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -39,7 +39,9 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-       
+        $user = Auth::user();
+        $event = $user->events;
+        return view('eventPage', ['event_user' => $event]);
     }
 
     /**
@@ -53,7 +55,7 @@ class EventController extends Controller
         $user = Auth::user();
         $event = $user->events;
 
-        return view('eventPage', ['event_user' => $event]);
+        return view('favorite', ['event_user' => $event]);
    }
 
     /**
