@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -37,7 +38,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -83,5 +84,11 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         //
+    }
+
+    public function signUp($userID, $eventID) {
+        $event = Event::find($userID);
+        $user = User::find($eventID);
+        $event->usuarios()->attach($user);
     }
 }

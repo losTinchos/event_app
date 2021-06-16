@@ -46,7 +46,7 @@
                             <a href="/event/{{ $event->id }}">
                                 <button class="text-blue font-bold">Read More</button>
                             </a>
-                            <button class="text-red font-bold">Cancel</button>
+                            <button class="text-red font-bold" >Join Event</button>
                         </div>
                     </div>
                 </li>
