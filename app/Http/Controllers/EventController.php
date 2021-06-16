@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -38,7 +39,6 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -49,7 +49,10 @@ class EventController extends Controller
      */
     public function show(Event $event) {
         
-        return view('eventPage', ['event' => $event]);
+        $user = Auth::user();
+        $event = $user->events;
+
+        return view('eventPage', ['event_user' => $event]);
    }
 
     /**
@@ -86,9 +89,5 @@ class EventController extends Controller
         //
     }
 
-    public function signUp($userID, $eventID) {
-        $event = Event::find($userID);
-        $user = User::find($eventID);
-        $event->usuarios()->attach($user);
-    }
+   
 }
