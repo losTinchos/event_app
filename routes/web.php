@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('events.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

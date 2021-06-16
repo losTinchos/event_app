@@ -15,7 +15,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-        return view('home', ['events'=>$events]);
+        return view('events.home', ['events'=>$events]);
 
     }
 
@@ -26,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('events.create');
     }
 
     /**
@@ -37,7 +37,9 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $articulo = Articulo::with('events')->find($id); 
+        $events = $articulo->events;
+        return view('events.home.');
     }
 
     /**
@@ -48,7 +50,7 @@ class EventController extends Controller
      */
     public function show(Event $event) {
         
-        return view('eventPage', ['event' => $event]);
+        return view('events.eventPage', ['event' => $event]);
    }
 
     /**
