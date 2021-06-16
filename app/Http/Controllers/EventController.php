@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -35,11 +36,15 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Event $event)
     {
+<<<<<<< HEAD
         $articulo = Articulo::with('events')->find($id); 
         $events = $articulo->events;
         return view('events.home.');
+=======
+        return view('eventPage', ['event' => $event]);
+>>>>>>> 64a77626dd4ffea296e190b357114d4cfe1d72f9
     }
 
     /**
@@ -48,11 +53,23 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event) {
-        
-        return view('events.eventPage', ['event' => $event]);
+    public function show() {
+        $user = Auth::user();
+        $event = $user->events;
+        return view('myEvents', ['event_user' => $event]);
    }
-
+   public function singUpEvent($id) {
+        $userID = Auth::user()->id;
+        $newEventID = Event::find($id);
+        $newEventID->users()->attach($userID);
+        return redirect()->route('home');
+   }
+   public function leaveEvent($id) {
+    $userID = Auth::user()->id;
+    $newEventID = Event::find($id);
+    $newEventID->users()->detach($userID);
+    return redirect()->route('myEvents');
+   }
     /**
      * Show the form for editing the specified resource.
      *
@@ -86,4 +103,6 @@ class EventController extends Controller
     {
         //
     }
+
+   
 }
