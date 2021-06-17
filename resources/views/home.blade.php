@@ -18,9 +18,9 @@
         <header style="height: 10vh" class="flex justify-between">
             <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>"
                 alt="logo">
-                @if (Auth::check())
-                    <p class="">{{Auth::user()->name}}</p>
-                @endif
+            @if (Auth::check())
+                <p class="">{{ Auth::user()->name }}</p>
+            @endif
         </header>
         <main style="height: 90vh">
             <div class="inline-flex container p-4 bg-blue-dark" style="height: 25vh">
@@ -59,24 +59,24 @@
                                     @if (Auth::check())
                                         @foreach ($event_user as $myEvent)
                                             @if ($myEvent->id == $event->id)
-                                            @php
-                                                $whichButton = 'Leave Event';
-                                            @endphp
+                                                @php
+                                                    $whichButton = 'Leave Event';
+                                                @endphp
                                             @endif
                                         @endforeach
                                         @if ($whichButton == 'Join Event')
-                                        <a href="/subscribe/{{ $event->id }}">
-                                            <button class="text-blue font-bold">{{$whichButton}}</button>
-                                        </a>
-                                    @else
-                                        <a href="/unsubscribe/{{ $event->id }}">
-                                            <button class="text-red font-bold">{{$whichButton}}</button>
-                                        </a>
+                                            <a href="/subscribe/{{ $event->id }}">
+                                                <button class="text-blue font-bold">{{ $whichButton }}</button>
+                                            </a>
+                                        @else
+                                            <a href="/unsubscribe/{{ $event->id }}">
+                                                <button class="text-red font-bold">{{ $whichButton }}</button>
+                                            </a>
                                         @endif
-                                    @else 
-                                    <a href="/login">
-                                        <button class="text-blue font-bold">{{$whichButton}}</button>
-                                    </a>
+                                    @else
+                                        <a href="/login">
+                                            <button class="text-blue font-bold">{{ $whichButton }}</button>
+                                        </a>
                                     @endif
                                 </div>
                             </div>
