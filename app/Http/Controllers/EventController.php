@@ -21,7 +21,7 @@ class EventController extends Controller
         if (!Auth::check()) {
             
             return view('home', ['events' => $events]);
-          }
+        }
 
         $user = Auth::user();
         $event = $user->events;
