@@ -17,15 +17,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory()->create(['name' => 'Anya', 'email' =>'anya@gmail.com']);
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> 4c28aa7f2dc6ac46d2cd0b46e66e5d34c3c8034a
         Event::factory(5)->create();
-
-      /*  Foreach (Event::all() as $event){
-            $users = User::inRandomOrder()->take(rand(1,10))->pluck('id');
-            $event->events()->attach($users);
-        }*/
     
     }
-
-
 }
