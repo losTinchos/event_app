@@ -15,9 +15,10 @@
 
 <body>
     <div class="h-full w-full">
-        <header style="height: 10vh" class="flex items-center">
+        <header style="height: 10vh" class="flex justify-between">
             <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>"
                 alt="logo">
+            <p class="">{{auth()->user()->name}}</p>
         </header>
         <main style="height: 90vh">
             <div class="inline-flex container p-4 bg-blue-dark" style="height: 25vh">
@@ -52,18 +53,22 @@
                                 <button class="text-blue font-bold">Join Event</button>
                             </a>
                             @endif
+
                                 @foreach ($event_user as $myEvent)
-                                    @if ($myEvent->id === $event->id)
-                                    <a href="/unsubscribe/{{ $event->id }}">
-                                        <button class="text-red font-bold">Leave Event</button>
-                                    </a>
-                                    @elseif($myEvent->id != $event->id)
+                                @if ($myEvent->id === $event->id)
+                                <a href="/unsubscribe/{{ $event->id }}">
+                                    <button class="text-red font-bold">Leave Event</button>
+                                </a>
+                                @break
+                                @else($event->id != $myEvent->id)
                                 <a href="/subscribe/{{ $event->id }}">
                                     <button class="text-blue font-bold">Join Event</button>
                                 </a>
-                                @endif
-                                    
-                                @endforeach
+                            @endif
+                                
+                            @endforeach
+                            
+
                         </div>
                     </div>
                 </li>
