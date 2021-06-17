@@ -16,7 +16,8 @@
 <body>
     <div class="h-full w-full">
         <header style="height: 10vh" class="flex items-center">
-            <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>" alt="logo">
+            <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>"
+                alt="logo">
         </header>
         <main style="height: 90vh">
             <div class="inline-flex container p-4 bg-blue-dark" style="height: 25vh">
@@ -46,10 +47,23 @@
                             <a href="/event/{{ $event->id }}">
                                 <button class="text-blue font-bold">Read More</button>
                             </a>
+                            <?php var_dump($event_user[0]->id) ?>
+                           
+                                @foreach ($event_user as $myEvent)
 
-                            <a href="/subscribe/{{ $event->id }}">
-                                <button class="text-red font-bold">Join Event</button>
-                            </a>
+                                    @if ($myEvent->id != $event->id)
+                                    <a href="/subscribe/{{ $event->id }}">
+                                        <button class="text-blue font-bold">Join Event</button>
+                                    </a>
+                                    
+                                    @else
+                                    <a href="/unsubscribe/{{ $event->id }}">
+                                        <button class="text-red font-bold">Leave Event</button>
+                                    </a>
+                                    @endif
+                                    
+                                    
+                                @endforeach
                         </div>
                     </div>
                 </li>
@@ -62,6 +76,9 @@
                 <x-t-event-card1></x-t-event-card1>
                 <x-t-event-card1></x-t-event-card1> --}}
 
+            </ul>
+            
+            {{-- <x-t-navbar></x-t-navbar> --}}
 
             <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around absolute bottom-0">
                 <button>
@@ -91,22 +108,6 @@
         </main>
     </div>
 
-    {{-- <div
-        class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-        @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                @auth
-                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-    @else
-    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-
-    @if (Route::has('register'))
-    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-    @endif
-    @endauth
-    </div>
-    @endif
-    </div> --}}
 </body>
 
 </html>

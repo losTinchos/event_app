@@ -29,4 +29,3 @@ Route::get('/create', [EventController::class, "create"])->name('create');
 Route::get('/myEvents', [EventController::class, "show"])->name('myEvents');
 Route::get('/subscribe/{id}', [EventController::class, "singUpEvent"])->name("subscribe");
 Route::get('/unsubscribe/{id}', [EventController::class, "leaveEvent"])->name("unsubscribe");
-
