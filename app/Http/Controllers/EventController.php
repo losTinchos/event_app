@@ -25,11 +25,11 @@ class EventController extends Controller
 
         $user = Auth::user();
         $event = $user->events;
-        
+        // $whichButton = 'Join Event';
         if(Auth::user()->role === 'admin') {
             return view('create', ['event' => $event, 'events' => $events]);
         }
-        return view('home', ['event' => $event, 'events' => $events]);
+        return view('home', ['event_user' => $event, 'events' => $events]);
     }
 
     /**
