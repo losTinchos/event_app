@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,10 +17,19 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
+
+        if (!Auth::check()) {
+            
+            return view('home', ['events' => $events]);
+          }
+
         $user = Auth::user();
         $event = $user->events;
-        return view('home', ['event_user' => $event, 'events' => $events]);
-
+        
+        if(Auth::user()->role === 'admin') {
+            return view('create', ['event' => $event, 'events' => $events]);
+        }
+        return view('home', ['event' => $event, 'events' => $events]);
     }
 
     /**
