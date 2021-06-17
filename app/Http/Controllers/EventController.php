@@ -38,13 +38,7 @@ class EventController extends Controller
      */
     public function store(Event $event)
     {
-<<<<<<< HEAD
-        $articulo = Articulo::with('events')->find($id); 
-        $events = $articulo->events;
-        return view('events.home.');
-=======
         return view('eventPage', ['event' => $event]);
->>>>>>> 64a77626dd4ffea296e190b357114d4cfe1d72f9
     }
 
     /**
