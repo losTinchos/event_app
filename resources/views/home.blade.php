@@ -56,9 +56,7 @@
                                     @php
                                         $whichButton = 'Join Event';
                                     @endphp
-
                                     @if (Auth::check())
-
                                         @foreach ($event_user as $myEvent)
                                             @if ($myEvent->id == $event->id)
                                             @php
@@ -66,10 +64,7 @@
                                             @endphp
                                             @endif
                                         @endforeach
-
-                                    @endif
-
-                                    @if ($whichButton == 'Join Event')
+                                        @if ($whichButton == 'Join Event')
                                         <a href="/subscribe/{{ $event->id }}">
                                             <button class="text-blue font-bold">{{$whichButton}}</button>
                                         </a>
@@ -77,20 +72,22 @@
                                         <a href="/unsubscribe/{{ $event->id }}">
                                             <button class="text-red font-bold">{{$whichButton}}</button>
                                         </a>
+                                        @endif
+                                    @else 
+                                    <a href="/login">
+                                        <button class="text-blue font-bold">{{$whichButton}}</button>
+                                    </a>
                                     @endif
-
                                 </div>
                             </div>
                         </li>
                     @endforeach
-
                 </ul>
             </div>
             {{-- <x-t-event-card1></x-t-event-card1>
                 <x-t-event-card2></x-t-event-card2>
                 <x-t-event-card1></x-t-event-card1>
                 <x-t-event-card1></x-t-event-card1> --}}
-
             </ul>
 
             {{-- <x-t-navbar></x-t-navbar> --}}
