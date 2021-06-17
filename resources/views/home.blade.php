@@ -18,7 +18,9 @@
         <header style="height: 10vh" class="flex justify-between">
             <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>"
                 alt="logo">
-            {{-- <p class="">{{auth()->user()->name}}</p> --}}
+                @if (Auth::check())
+                    <p class="">{{Auth::user()->name}}</p>
+                @endif
         </header>
         <main style="height: 90vh">
             <div class="inline-flex container p-4 bg-blue-dark" style="height: 25vh">
@@ -66,7 +68,7 @@
                                         <a href="/subscribe/{{ $event->id }}">
                                             <button class="text-blue font-bold">{{$whichButton}}</button>
                                         </a>
-                                        @else
+                                    @else
                                         <a href="/unsubscribe/{{ $event->id }}">
                                             <button class="text-red font-bold">{{$whichButton}}</button>
                                         </a>

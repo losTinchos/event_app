@@ -19,7 +19,8 @@ class EventController extends Controller
         $events = Event::all();
         if (!Auth::check()) {
             return view('home', ['events' => $events]);
-          }
+        }
+
         $user = Auth::user();
         $event = $user->events;
         if(Auth::user()->role === 'admin') {
