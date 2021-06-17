@@ -17,8 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory()->create(['name' => 'Anya', 'email' =>'anya@gmail.com']);
-        User::factory()->create(['name' => 'Anya', 'email' =>'anya@gmail.com']);
-
+        
         Event::factory(5)->create();
 
       /*  Foreach (Event::all() as $event){
