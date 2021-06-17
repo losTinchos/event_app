@@ -47,21 +47,21 @@
                             <a href="/event/{{ $event->id }}">
                                 <button class="text-blue font-bold">Read More</button>
                             </a>
-                            <?php var_dump($event_user[0]->id) ?>
-                           
+                            @if (count($event_user) === 0)
+                            <a href="/subscribe/{{ $event->id }}">
+                                <button class="text-blue font-bold">Join Event</button>
+                            </a>
+                            @endif
                                 @foreach ($event_user as $myEvent)
-
-                                    @if ($myEvent->id != $event->id)
-                                    <a href="/subscribe/{{ $event->id }}">
-                                        <button class="text-blue font-bold">Join Event</button>
-                                    </a>
-                                    
-                                    @else
+                                    @if ($myEvent->id === $event->id)
                                     <a href="/unsubscribe/{{ $event->id }}">
                                         <button class="text-red font-bold">Leave Event</button>
                                     </a>
-                                    @endif
-                                    
+                                    @elseif($myEvent->id != $event->id)
+                                <a href="/subscribe/{{ $event->id }}">
+                                    <button class="text-blue font-bold">Join Event</button>
+                                </a>
+                                @endif
                                     
                                 @endforeach
                         </div>
