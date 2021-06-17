@@ -15,9 +15,10 @@
 
 <body>
     <div class="h-full w-full">
-        <header style="height: 10vh" class="flex items-center">
+        <header style="height: 10vh" class="flex justify-between">
             <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>"
                 alt="logo">
+            <p class="">{{auth()->user()->name}}</p>
         </header>
         <main style="height: 90vh">
             <div class="inline-flex container p-4 bg-blue-dark" style="height: 25vh">
@@ -47,8 +48,8 @@
                             <a href="/event/{{ $event->id }}">
                                 <button class="text-blue font-bold">Read More</button>
                             </a>
-                  
-                           
+                            
+                            
                                 @foreach ($event_user as $myEvent)
 
                                     @if ($myEvent->id != $event->id)

@@ -15,8 +15,9 @@
 
 <body>
     <div class="h-full w-full">
-        <header style="height: 10vh" class="flex items-center">
+        <header style="height: 10vh" class="flex justify-between">
             <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>" alt="logo">
+            <p class="">{{auth()->user()->name}}</p>
         </header>
         <main style="height: 90vh">
             <div style="height: 55vh">
