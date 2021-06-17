@@ -47,7 +47,7 @@
                             <a href="/event/{{ $event->id }}">
                                 <button class="text-blue font-bold">Read More</button>
                             </a>
-                            <?php var_dump($event_user[0]->id) ?>
+                  
                            
                                 @foreach ($event_user as $myEvent)
 
