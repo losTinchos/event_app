@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,12 +17,16 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
+        if (!Auth::check()) {
+            return view('home', ['events' => $events]);
+          }
         $user = Auth::user();
         $event = $user->events;
+        if(Auth::user()->role === 'admin') {
+            return view('create', ['event' => $event, 'events' => $events]);
+        }
         return view('home', ['event_user' => $event, 'events' => $events]);
-
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +45,9 @@ class EventController extends Controller
      */
     public function store(Event $event)
     {
-        return view('eventPage', ['event' => $event]);
+        $user = Auth::user();
+        $events = $user->events;
+        return view('eventPage', ['event' => $event, 'event_user' => $events]);
     }
 
     /**
