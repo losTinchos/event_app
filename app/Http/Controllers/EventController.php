@@ -16,8 +16,9 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-        $highlights = Event::find('highlights'); //return array
-        return view('home', ['events'=>$events]);
+        $user = Auth::user();
+        $event = $user->events;
+        return view('home', ['event_user' => $event, 'events' => $events]);
 
     }
 
@@ -53,7 +54,19 @@ class EventController extends Controller
         $event = $user->events;
         return view('myEvents', ['event_user' => $event]);
    }
-
+   public function singUpEvent($id) {
+        $userID = Auth::user()->id;
+        $newEventID = Event::find($id);
+        $newEventID->users()->attach($userID);
+        return redirect()->route('home');
+   }
+   public function leaveEvent($id) {
+        $userID = Auth::user()->id;
+        $newEventID = Event::find($id);
+        $newEventID->users()->detach($userID);
+        return redirect()->route('home');
+   }
+   
     /**
      * Show the form for editing the specified resource.
      *

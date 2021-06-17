@@ -19,16 +19,6 @@
             <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>" alt="logo">
         </header>
         <main style="height: 90vh">
-            <div class="inline-flex container p-4 bg-blue-dark" style="height: 25vh">
-                <img class="h-28 p-3 pt-5" src="<?php echo asset('storage/images/gear.png'); ?>" alt="">
-                <div class="flex-1">
-                    <p class="text-aqua text-right">03/06/2021</p>
-                    <h4 class="text-aqua">MASTER CLASS</h4>
-                    <h2 class="font-bold text-xl text-aqua">PHP for noobs</h2>
-                    <p class="text-white">This talk is an introduction to one of the most popular back-end languages</p>
-                    <x-t-btn-yellow></x-t-btn-yellow>
-                </div>
-            </div>
             <div style="height: 55vh">
             <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full">
             <!--bg-blue-dark bg-blue-->
@@ -43,10 +33,10 @@
                         <p class="bg-aqua-light" style="width: fit-content">29 places / 1 available</p>
                         <p>{{$event->description}}</p>
                         <div class="inline-flex space-x-10">
-                            <a href="/event/{{ $event->id }}">
                                 <button class="text-blue font-bold">Read More</button>
+                            <a href="/unsubscribe/{{ $event->id }}">
+                            <button class="text-red font-bold" >Leave Event</button>
                             </a>
-                            <button class="text-red font-bold" >Join Event</button>
                         </div>
                     </div>
                 </li>
@@ -56,9 +46,11 @@
             </div>
             <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around absolute bottom-0">
                 <button>
+                    <a href="{{ route("home")}}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
+                    </a>
                 </button>
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-aqua" fill="none" viewBox="0 0 24 24" stroke="currentColor">
