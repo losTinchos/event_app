@@ -23,6 +23,7 @@ class EventController extends Controller
 
         $user = Auth::user();
         $event = $user->events;
+
         if(Auth::user()->role === 'admin') {
             return view('create', ['event' => $event, 'events' => $events]);
         }
@@ -44,10 +45,22 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Event $event)
+    public function store(Request $request, Event $event)
     {
         $user = Auth::user();
         $events = $user->events;
+
+        if(Auth::user()->role === 'admin') {
+            return view('create', ['event' => $event, 'events' => $events]);
+        }
+
+        $event = Event::create(["title"=>$request->title,
+                            "description"=>$request->description,
+                            "ful_description"=>$request->full_description,
+                            "image"=>$request->image,
+                            "date"=>$request->date]);
+        return redirect()->route('home');
+
         return view('eventPage', ['event' => $event, 'event_user' => $events]);
     }
 
@@ -81,9 +94,11 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
-        //
+        $event = Event::find($id);
+
+        return view ('edit',['event'=>$event]);
     }
 
     /**
@@ -93,9 +108,11 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+        $event = Event::find($id);
+        $event->update($request->all());
+        return redirect()->route('home');
     }
 
     /**
