@@ -56,7 +56,9 @@
                                     @php
                                         $whichButton = 'Join Event';
                                     @endphp
+
                                     @if (Auth::check())
+                                    
                                         @foreach ($event_user as $myEvent)
                                             @if ($myEvent->id == $event->id)
                                                 @php
@@ -64,6 +66,7 @@
                                                 @endphp
                                             @endif
                                         @endforeach
+
                                         @if ($whichButton == 'Join Event')
                                             <a href="/subscribe/{{ $event->id }}">
                                                 <button class="text-blue font-bold">{{ $whichButton }}</button>

@@ -14,6 +14,10 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function changeButton() {
+        
+    }
+
     public function index()
     {
         $events = Event::all();
