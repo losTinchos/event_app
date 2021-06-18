@@ -68,7 +68,7 @@
                                         <a href="/subscribe/{{ $event->id }}">
                                             <button class="text-blue font-bold">{{$whichButton}}</button>
                                         </a>
-                                    @else
+                                        @else
                                         <a href="/unsubscribe/{{ $event->id }}">
                                             <button class="text-red font-bold">{{$whichButton}}</button>
                                         </a>
