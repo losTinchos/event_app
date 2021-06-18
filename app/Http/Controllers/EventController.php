@@ -47,6 +47,9 @@ class EventController extends Controller
      */
     public function store(Request $request, Event $event)
     {
+        if (!Auth::check()) {
+            return view('eventPage', ['event' => $event]);
+        }
         $user = Auth::user();
         $events = $user->events;
 
@@ -71,6 +74,9 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show() {
+        if (!Auth::check()) {
+            return view('myEvents');
+        }
         $user = Auth::user();
         $event = $user->events;
         return view('myEvents', ['event_user' => $event]);
