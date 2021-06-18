@@ -17,12 +17,13 @@
     <div class="h-full w-full">
         <header style="height: 10vh" class="flex justify-between">
             <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>" alt="logo">
-            <p class="">{{auth()->user()->name}}</p>
+            <p class="">@if (Auth::check()) {{auth()->user()->name}}</p> @endif
         </header>
         <main style="height: 90vh">
-            <div style="height: 55vh">
+            <div style="height: inherit">
             <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full">
             <!--bg-blue-dark bg-blue-->
+            @if (Auth::check())
                 @foreach ($event_user as $event)
                 <li style="width: 24rem;" class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
                     <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
@@ -42,19 +43,19 @@
                     </div>
                 </li>
                 @endforeach
-         
+            @endif
             </ul>
             </div>
             <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around absolute bottom-0">
                 <button>
                     <a href="{{ route("home")}}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-aqua" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                     </a>
                 </button>
                 <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-aqua" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                 </button>
