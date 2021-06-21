@@ -26,6 +26,7 @@ Route::get('/event/{event}' , [EventController::class , 'store'])->name('event.s
 
 Route::get('/', [EventController::class, "index"])->name('home');
 Route::get('/create', [EventController::class, "create"])->middleware('create');
+Route::post('/create', [EventController::class, "store"])->name('store');
 Route::get('/myEvents', [EventController::class, "show"])->name('myEvents');
 Route::get('/subscribe/{id}', [EventController::class, "singUpEvent"])->name("subscribe");
 Route::get('/unsubscribe/{id}', [EventController::class, "leaveEvent"])->name("unsubscribe");
