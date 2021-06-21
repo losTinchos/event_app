@@ -68,6 +68,7 @@ class EventController extends Controller
         $event = $user->events;
         return view('myEvents', ['event_user' => $event]);
    }
+   
    public function singUpEvent($id) {
         $userID = Auth::user()->id;
         $newEventID = Event::find($id);
