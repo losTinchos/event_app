@@ -53,17 +53,6 @@ class EventController extends Controller
         $user = Auth::user();
         $events = $user->events;
 
-        if(Auth::user()->role === 'admin') {
-            return view('create', ['event' => $event, 'events' => $events]);
-        }
-
-        $event = Event::create(["title"=>$request->title,
-                            "description"=>$request->description,
-                            "ful_description"=>$request->full_description,
-                            "image"=>$request->image,
-                            "date"=>$request->date]);
-        return redirect()->route('home');
-
         return view('eventPage', ['event' => $event, 'event_user' => $events]);
     }
 
@@ -102,9 +91,7 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::find($id);
-
-        return view ('edit',['event'=>$event]);
+       
     }
 
     /**
@@ -116,9 +103,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $event = Event::find($id);
-        $event->update($request->all());
-        return redirect()->route('home');
+        
     }
 
     /**
