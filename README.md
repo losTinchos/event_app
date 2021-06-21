@@ -21,18 +21,17 @@ AS an admin, the the Event_App admin will be able to acces all the pages and cre
 
 ## Tools 
 <ol>
-<li >Vistual Code Studio</li>
-<li>Github</li>
-<li>google</li>
-<li>Laravel</li>
-<li>tailwind</li>
-<li>CSS</li>
-<li>HTML</li>
-<li>tailwind</li>
-<li>Mysql</li>
-<li>Xamp</li>
-<li>Trello</li>
-<li>Figma</li>
+<li><a href="https://code.visualstudio.com/">Vistual Code Studio</a></li>
+<li><a href="https://tailwindcss.com/">tailwind!</a></li>
+<li><a href="https://www.google.com/">google</a></li>
+<li><a href="https://laravel.com/">Laravel</a></li>
+<li><a href="https://www.w3schools.com/css/">CSS</a></li>
+<li><a href="https://www.w3schools.com/html/">HTML</a></li>
+<li><a href="https://www.mysql.com/">MYSQL</a></li>
+<li><a href="https://github.com/">Github</a></li>
+<li><a href="https://www.apachefriends.org/index.html">XAMPP</a></li>
+<li><a href="https://trello.com/">Trello</a></li>
+<li><a href="https://www.figma.com/">Figma</a></li>
 </ol>
 
  ## team
