@@ -12,9 +12,16 @@ AS an admin, the the Event_App admin will be able to acces all the pages and cre
 - **[laravel](https://laravel.com)**
 - **[PHP](https://www.php.net/interface)**
 
+ ## Screens
+ <p  align="center">
+<img src="./images/programming.png" alt="Home">
+<img src="./images/login.png" alt="Login" >
+<img src="./images/register.png" alt="Register">
+</p>
+
 ## Tools 
 <ol>
-<li>Vistual Code Studio</li>
+<li >Vistual Code Studio</li>
 <li>Github</li>
 <li>google</li>
 <li>Laravel</li>
@@ -26,7 +33,6 @@ AS an admin, the the Event_App admin will be able to acces all the pages and cre
 <li>Xamp</li>
 <li>Trello</li>
 <li>Figma</li>
-
 </ol>
 
  ## team
@@ -36,12 +42,4 @@ AS an admin, the the Event_App admin will be able to acces all the pages and cre
 - [Diego]( https://github.com/diegognzv)
 - [Abdulah](https://github.com/PPIICCAA)
 - [Github Los Tincho's](https://github.com/losTinchos)
-
- ## Screens
- <p  align="center">
-<img src="./images/homepage.png" alt="Home">
-<img src="./images/login.png" alt="Login" >
-<img src="./images/register.png" alt="Register">
-</p>
-
 
