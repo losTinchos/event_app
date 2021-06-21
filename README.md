@@ -11,6 +11,7 @@ AS an admin, the the Event_App admin will be able to acces all the pages and cre
 
 - **[laravel](https://laravel.com)**
 - **[PHP](https://www.php.net/interface)**
+- **[JS](https://www.w3schools.com/js/DEFAULT.asp)**
 
  ## Screens
  <p  align="center">
