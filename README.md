@@ -28,7 +28,7 @@ AS an admin, the the Event_App admin will be able to acces all the pages and cre
 <li><a href="https://www.w3schools.com/css/">CSS</a></li>
 <li><a href="https://www.w3schools.com/html/">HTML</a></li>
 <li><a href="https://www.mysql.com/">MYSQL</a></li>
-<li></li><a href="https://github.com/">Github</a></li>
+<li><a href="https://github.com/">Github</a></li>
 <li><a href="https://www.apachefriends.org/index.html">XAMPP</a></li>
 <li><a href="https://trello.com/">Trello</a></li>
 <li><a href="https://www.figma.com/">Figma</a></li>
