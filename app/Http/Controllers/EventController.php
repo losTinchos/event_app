@@ -46,10 +46,14 @@ class EventController extends Controller
      */
     public function store(Event $event, Request $request)
     {
+        if (!Auth::check()) {
+            return view('eventPage', ['event' => $event]);
+        }
         $user = Auth::user();
         $events = $user->events;
         return view('eventPage', ['event' => $event, 'event_user' => $events]);
 
+        
         if(Auth::user()->role === 'admin') {
             return view('create', ['event' => $event, 'events' => $events]);
         }
@@ -94,7 +98,7 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event, $id)
+    public function edit($id)
     {
         $event = Event::find($id);
 
@@ -109,7 +113,7 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event, $id)
+    public function update(Request $request, $id)
     {
         $event = Event::find($id);
         $event->update($request->all());
