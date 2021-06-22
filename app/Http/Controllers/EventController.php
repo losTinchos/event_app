@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmail;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -53,7 +54,6 @@ class EventController extends Controller
         $events = $user->events;
         return view('eventPage', ['event' => $event, 'event_user' => $events]);
     }
-
     /**
      * Display the specified resource.
      *
@@ -73,8 +73,10 @@ class EventController extends Controller
         $userID = Auth::user()->id;
         $newEventID = Event::find($id);
         $newEventID->users()->attach($userID);
+        SendEmail::dispatch(Auth::user()->email, "EVENT NOTIFICATION");
         return redirect()->route('home');
    }
+
    public function leaveEvent($id) {
         $userID = Auth::user()->id;
         $newEventID = Event::find($id);

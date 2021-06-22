@@ -24,8 +24,10 @@ require __DIR__.'/auth.php';
 
 Route::get('/event/{event}' , [EventController::class , 'store'])->name('event.store');
 
+// is_role:admin 
 Route::get('/', [EventController::class, "index"])->name('home');
 Route::get('/create', [EventController::class, "create"])->middleware('create');
 Route::get('/myEvents', [EventController::class, "show"])->name('myEvents');
+/// post or put
 Route::get('/subscribe/{id}', [EventController::class, "singUpEvent"])->name("subscribe");
 Route::get('/unsubscribe/{id}', [EventController::class, "leaveEvent"])->name("unsubscribe");
