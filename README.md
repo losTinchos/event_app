@@ -14,11 +14,11 @@ AS an admin, the the Event_App admin will be able to acces all the pages and cre
 - **[JS](https://www.w3schools.com/js/DEFAULT.asp)**
 
  ## Screens
- <p  align="center">
-<img src="./images/programming.png" alt="Home">
-<img src="./images/login.png" alt="Login" >
-<img src="./images/register.png" alt="Register">
-</p>
+ <div style="" >
+<img  src="./public/storage/images/homepage.png" alt="home">
+<img src="./public/storage/images/register.png" alt="login">
+<img src="./public/storage/images/login.png" alt="login">
+</div>
 
 ## Tools 
 <ol>
