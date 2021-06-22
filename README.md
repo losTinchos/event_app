@@ -15,7 +15,7 @@ AS an admin, the the Event_App admin will be able to acces all the pages and cre
 
  ## Screens
  <div>
-<img  src="./public/storage/images/homepage.png" alt="home" width=30%>
+<img  src="https://github.com/losTinchos/event_app/blob/development/public/t-images/logo.png" alt="home" width=30%>
 <img src="./public/storage/images/register.png" alt="login" width=30%>
 <img src="./public/storage/images/login.png" alt="login" width=30%>
 </div>
