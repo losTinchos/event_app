@@ -9,8 +9,8 @@
     <title>Create</title>
 </head>
 <body>
-    <form action="{{route("store")}}" method="post"> 
-        @csrf   
+    <form action="{{route('store')}}" method="POST" enctype="multipart/form-data"> 
+        @csrf  
         <section class="text-blueGray-700 ">
             <div class="container items-center px-5 py-12 lg:px-20">
             <div class="flex flex-col w-full p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white border rounded-lg lg:w-2/6 md:w-1/2 md:mt-0">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="relative mt-4">
                 <label for="image" class="text-base leading-7 text-blueGray-500">Image</label>
-                <input type="text" id="image" name="image" value="" class="w-full px-4 py-2 mt-2 text-base text-black transition duration-500 ease-in-out transform border-transparent rounded-lg bg-blueGray-100 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
+                <input type="file" id="image" name="image" value="image" class="w-full px-4 py-2 mt-2 text-base text-black transition duration-500 ease-in-out transform border-transparent rounded-lg bg-blueGray-100 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
                 </div>
                 <div class="relative mt-4">
                     <label for="date" class="text-base leading-7 text-blueGray-500">Date</label>
@@ -37,11 +37,17 @@
                 <div class="flex my-6">
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox ">
-                    <span class="ml-2 text-blueGray-500">Subscribe me </span>
+                    <span class="ml-2 text-blueGray-500">Highlight
+                    </span>
                 </label>
                 </div>
                 <div class="inline-flex flex-wrap items-center justify-between ">
-                <button type="submit" class="w-full px-4 py-2 my-2 font-medium text-blue-600 transition duration-500 ease-in-out transform bg-blue-100 border-blueGray-100 rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blue-200 hover:text-blue-900"> New Event </button>
+                
+                <button type="submit" class="w-full px-4 py-2 my-2 font-medium text-blue-600 transition 
+                duration-500 ease-in-out transform bg-blue-100 border-blueGray-100 rounded-md 
+                focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 
+                hover:bg-blue-200 hover:text-blue-900"> New Event </button>
+                
             </div>
         </section>
     </form>

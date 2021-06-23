@@ -44,29 +44,20 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Event $event, Request $request)
+    public function store(Request $request)
     {
+        $newEvent = request()->except('_token');
+
+        
         if (!Auth::check()) {
-            return view('eventPage', ['event' => $event]);
+            return view('eventPage', ['event' => $newEvent]);
         }
         $user = Auth::user();
         $events = $user->events;
-        return view('eventPage', ['event' => $event, 'event_user' => $events]);
-
-        
-        if(Auth::user()->role === 'admin') {
-            return view('create', ['event' => $event, 'events' => $events]);
-        }
-
-        $event = Event::create(["title"=>$request->title,
-                            "description"=>$request->description,
-                            "ful_description"=>$request->full_description,
-                            "image"=>$request->image,
-                            "date"=>$request->date]);
-        return redirect()->route('home');
-
-
+        Event::insert($newEvent);
+        return redirect()->route('home');   
     }
+
 
     /**
      * Display the specified resource.
