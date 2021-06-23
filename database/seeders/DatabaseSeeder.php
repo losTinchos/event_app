@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create(['name' => 'Admin', 'email' =>'admin@gmail.com', 'role' => 'admin']);
        
-        Event::factory(5)->create();
+        Event::factory(20)->create();
     
     }
 }

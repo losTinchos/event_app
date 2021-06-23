@@ -87,7 +87,7 @@
             </div>
         </div>
         </div>
-            <div style="height: 55vh">
+            <div style="height: 51vh">
                 <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full">
                     <!--bg-blue-dark bg-blue-->
                     @foreach ($events as $event)
@@ -135,6 +135,8 @@
                             </div>
                         </li>
                     @endforeach
+                    <?php echo $events->render(); ?>
+                    
                 </ul>
             </div>
             </ul>

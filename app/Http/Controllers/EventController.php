@@ -17,7 +17,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::paginate(15);
         if (!Auth::check()) {
             return view('home', ['events' => $events]);
         }
