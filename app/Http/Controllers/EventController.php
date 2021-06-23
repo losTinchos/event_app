@@ -35,10 +35,9 @@ class EventController extends Controller
 
     public function index()
     {
-        // $events = Event::all();
+        
         $events = Event::all()->sortBy('date')
         ->groupBy(function($event) {
-            // $theEvent = Event::find($event->id);
             $event['attending'] = count($this->usersSigned($event->id));
             $event['remaining'] = $event->capacity - $event->attending;
             return $event->date >= now() ? 'upcoming' : 'past';
