@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmail;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,8 +28,8 @@ class EventController extends Controller
 
         $user = Auth::user();
         $event = $user->events;
-        if(Auth::user()->role === 'admin') {
-            return view('create', ['event' => $event, 'events' => $events]);
+        if($user->role === 'admin') {
+            return view('admin.home2', ['event_user' => $event, 'events' => $events]);
         }
         return view('home', ['event_user' => $event, 'events' => $events]);
     }
@@ -39,7 +40,11 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $user = Auth::user();
+        if($user->role === 'admin') {
+            return view('admin.create');
+        }
+
     }
 
     /**
@@ -48,13 +53,17 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Event $event)
+    public function store(Request $request)
     {
+        $newEvent = request()->except('_token');
+        if (!Auth::check()) {
+            return view('eventPage', ['event' => $newEvent]);
+        }
         $user = Auth::user();
         $events = $user->events;
-        return view('eventPage', ['event' => $event, 'event_user' => $events]);
+        Event::insert($newEvent);
+        return redirect()->route('home');   
     }
-
     /**
      * Display the specified resource.
      *
@@ -62,16 +71,22 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show() {
+        if (!Auth::check()) {
+            return view('myEvents');
+        }
         $user = Auth::user();
         $event = $user->events;
         return view('myEvents', ['event_user' => $event]);
    }
+   
    public function singUpEvent($id) {
         $userID = Auth::user()->id;
         $newEventID = Event::find($id);
         $newEventID->users()->attach($userID);
+        SendEmail::dispatch(Auth::user()->email, "EVENT NOTIFICATION");
         return redirect()->route('home');
    }
+
    public function leaveEvent($id) {
         $userID = Auth::user()->id;
         $newEventID = Event::find($id);
@@ -85,9 +100,12 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
-        //
+        $event = Event::find($id);
+
+        return view ('admin.edit',['event'=>$event]);
+
     }
 
     /**
@@ -97,9 +115,11 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+        $event = Event::find($id);
+        $event->update($request->all());
+        return redirect()->route('home');
     }
 
     /**
@@ -108,10 +128,15 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function delete($id)
     {
-        //
-    }
+        $events = Event::all();
+        $user = Auth::user();
+        $event = $user->events;
 
-   
+        Event::find($id)->delete();
+
+
+        return redirect()->route('home');
+    }
 }
