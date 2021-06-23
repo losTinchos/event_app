@@ -83,7 +83,7 @@ class EventController extends Controller
         $userID = Auth::user()->id;
         $newEventID = Event::find($id);
         $newEventID->users()->attach($userID);
-        SendEmail::dispatch(Auth::user()->email, "EVENT NOTIFICATION");
+        // SendEmail::dispatch(Auth::user()->email, "EVENT NOTIFICATION");
         return redirect()->route('home');
    }
 
