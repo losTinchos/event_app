@@ -8,11 +8,23 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+        <!-- Javascript -->
+    <script>
+        /*
+        window.onload = function(){
+        setInterval(() => {
+            document.querySelector(".carousel-control").onclick = slidermove();
+            function slidermove() {
+                alert('I am foo!');
+            }
+        }, 4000);
+}   
+*/
+    </script>
 </head>
-
 <body>
     <div class="h-full w-full">
         <header style="height: 10vh" class="flex justify-between">
@@ -22,18 +34,59 @@
                     <p class="">{{Auth::user()->name}}</p>
                 @endif
         </header>
-        <main style="height: 90vh">
-            <div class="inline-flex container p-4 bg-blue-dark" style="height: 25vh">
-                <img class="h-28 p-3 pt-5"
-                    src="<?php echo asset('storage/images/gear.png'); ?>" alt="">
-                <div class="flex-1">
-                    <p class="text-aqua text-right">03/06/2021</p>
-                    <h4 class="text-aqua">MASTER CLASS</h4>
-                    <h2 class="font-bold text-xl text-aqua">PHP for noobs</h2>
-                    <p class="text-white">This talk is an introduction to one of the most popular back-end languages</p>
-                    <x-t-btn-yellow></x-t-btn-yellow>
+        <main>             
+        <div class="carousel">
+            <div class="carousel-inner">
+                <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
+                <div class="carousel-item">
+                    @for ($i = 1; $i < 2; $i++)
+                    <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-blue-dark" style="height: 25vh">
+                            <img class="h-28 p-3 pt-5"
+                                src="<?php echo asset('storage/images/gear.png'); ?>" alt="">
+                            <div class="flex-1">
+                                <p class="text-aqua text-right">{{ $events[$i]->created_at}}</p>
+                                <h4 class="text-aqua">{{ $events[$i]->title}}</h4>
+                                <h2 class="font-bold text-xl text-aqua">{{ $events[$i]->description}}</h2>
+                                <p class="text-white">{{ $events[$i]->full_description}}</p>
+                                <x-t-btn-yellow></x-t-btn-yellow>
+                        </div>                    
+                    </div>
+                    @endfor
                 </div>
+                @for ($i = 2; $i < count($events); $i++)
+                <input class="carousel-open" type="radio" id="carousel-{{$i}}" name="carousel" aria-hidden="true" hidden="">
+                <div class="carousel-item">
+                    <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-blue-dark" style="height: 25vh">
+                            <img class="h-28 p-3 pt-5"
+                                src="<?php echo asset('storage/images/gear.png'); ?>" alt="">
+                            <div class="flex-1">
+                                <p class="text-aqua text-right">{{ $events[$i]->created_at}}</p>
+                                <h4 class="text-aqua">{{ $events[$i]->title}}</h4>
+                                <h2 class="font-bold text-xl text-aqua">{{ $events[$i]->description}}</h2>
+                                <p class="text-white">{{ $events[$i]->full_description}}</p>
+                                <x-t-btn-yellow></x-t-btn-yellow>
+                        </div>                    
+                    </div>
+                </div>
+                @endfor
+                @for ($i = 1; $i < $end = count($events) ; $i++)
+                @php
+                $prev = $i === 1 ? $end - 1 : $i - 1;
+                $next = $i === $end - 1 ? 1 : $i + 1;
+                @endphp
+                <label for="carousel-{{$prev}}" class="carousel-control prev control-{{$i}}">‹</label>
+                <label for="carousel-{{$next}}" class="carousel-control next control-{{$i}}">›</label>
+                @endfor            
+                <ol class="carousel-indicators">
+                    @for ($i = 1; $i < count($events); $i++)
+                    <li>
+                        <label for="carousel-{{$i}}" class="carousel-bullet">•</label>
+                    </li>
+                    @endfor 
+                </ol>
             </div>
+        </div>
+        </div>
             <div style="height: 55vh">
                 <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full">
                     <!--bg-blue-dark bg-blue-->
@@ -43,6 +96,7 @@
                             <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
                                 <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
                             </div>
+
                             <div class="w-full m-2 pl-2">
                                 <p class="text-right">03/06/2021</p>
                                 <h2 class="font-bold text-xl">{{ $event->title }}</h2>
@@ -52,7 +106,6 @@
                                     <a href="/event/{{ $event->id }}">
                                         <button class="text-blue font-bold">Read More</button>
                                     </a>
-
                                     @php
                                         $whichButton = 'Join Event';
                                     @endphp
@@ -84,14 +137,7 @@
                     @endforeach
                 </ul>
             </div>
-            {{-- <x-t-event-card1></x-t-event-card1>
-                <x-t-event-card2></x-t-event-card2>
-                <x-t-event-card1></x-t-event-card1>
-                <x-t-event-card1></x-t-event-card1> --}}
             </ul>
-
-            {{-- <x-t-navbar></x-t-navbar> --}}
-
             <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around absolute bottom-0">
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-dark" fill="none"
@@ -117,6 +163,7 @@
                     </svg>
                 </button>
                 <button>
+                    <a href="{{ route('dashboard') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-aqua" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -124,6 +171,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
+                    </a>
                 </button>
             </nav>
         </main>
