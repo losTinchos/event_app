@@ -15,7 +15,7 @@ AS an admin, the the Event_App admin will be able to acces all the pages and cre
 
  ## Screens
  <div>
-<img  src="https://github.com/losTinchos/event_app/blob/development/public/t-images/logo.png" alt="home" width=30%>
+<img  src="./public/storage/images/homepage.png" alt="home" width=30%>
 <img src="./public/storage/images/register.png" alt="login" width=30%>
 <img src="./public/storage/images/login.png" alt="login" width=30%>
 </div>
@@ -29,7 +29,7 @@ AS an admin, the the Event_App admin will be able to acces all the pages and cre
 <li><a href="https://www.w3schools.com/css/">CSS</a></li>
 <li><a href="https://www.w3schools.com/html/">HTML</a></li>
 <li><a href="https://www.mysql.com/">MYSQL</a></li>
-<li></li><a href="https://github.com/">Github</a></li>
+<li><a href="https://github.com/">Github</a></li>
 <li><a href="https://www.apachefriends.org/index.html">XAMPP</a></li>
 <li><a href="https://trello.com/">Trello</a></li>
 <li><a href="https://www.figma.com/">Figma</a></li>
