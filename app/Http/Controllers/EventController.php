@@ -15,9 +15,25 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function changeButton() {
+        
+    }
+
+    public function up(Event $event, Request $request)
+    {
+     
+       $event = request()->except('_token');
+
+        Event::insert($event);
+
+    
+        return redirect('newEvent')->with('mensaje','Evento agregado con éxito');
+    }
+
+
     public function index()
     {
-        $events = Event::all();
+        $events = Event::paginate(15);
         if (!Auth::check()) {
             return view('home', ['events' => $events]);
         }
@@ -74,12 +90,22 @@ class EventController extends Controller
         $event = $user->events;
         return view('myEvents', ['event_user' => $event]);
    }
+
+   public function readMore(Event $event){
+    if (!Auth::check()) {
+        return view('eventPage', ['event' => $event]);
+    }
+    $user = Auth::user();
+    $events = $user->events;
+    return view('eventPage', ['event' => $event, 'event_user' => $events]);
+
+   }
    
    public function singUpEvent($id) {
         $userID = Auth::user()->id;
         $newEventID = Event::find($id);
         $newEventID->users()->attach($userID);
-        SendEmail::dispatch(Auth::user()->email, "EVENT NOTIFICATION");
+        //SendEmail::dispatch(Auth::user()->email, "EVENT NOTIFICATION");
         return redirect()->route('home');
    }
 

@@ -34,7 +34,10 @@
                     <label for="date" class="text-base leading-7 text-blueGray-500">Date</label>
                     <input type="date" name="date" class="w-full px-4 py-2 mt-2 text-base text-black transition duration-500 ease-in-out transform border-transparent rounded-lg bg-blueGray-100 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
                     </div>
-                <div class="flex my-6">
+                <div class="relative mt-4">
+                    <label for="capacity" class="text-base leading-7 text-blueGray-500">Capacity</label>
+                    <input type="number" name="capacity" class="w-full px-4 py-2 mt-2 text-base text-black transition duration-500 ease-in-out transform border-transparent rounded-lg bg-blueGray-100 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
+                </div>
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox ">
                     <span class="ml-2 text-blueGray-500">Highlight
