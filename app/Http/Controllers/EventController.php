@@ -28,21 +28,29 @@ class EventController extends Controller
     
         return redirect('newEvent')->with('mensaje','Evento agregado con éxito');
     }
-
+    function usersSigned($id) {
+        $event = Event::find($id);
+        return $event->users;
+   }
 
     public function index()
     {
         // $events = Event::all();
-        $events = Event::all()->sortBy('date');
-        // ->groupBy(function($events) {
-        //     return $events->date >= now() ? 'upcoming' : 'past';
-        //     });
+        $events = Event::all()->sortBy('date')
+        ->groupBy(function($event) {
+            // $theEvent = Event::find($event->id);
+            $event['attending'] = count($this->usersSigned($event->id));
+            $event['remaining'] = $event->capacity - $event->attending;
+            return $event->date >= now() ? 'upcoming' : 'past';
+            });
+            
         if (!Auth::check()) {
             return view('home', ['events' => $events]);
         }
 
         $user = Auth::user();
         $event = $user->events;
+
         if(Auth::user()->role === 'admin') {
             return view('create', ['event' => $event, 'events' => $events]);
         }
@@ -123,6 +131,7 @@ class EventController extends Controller
         $userID = Auth::user()->id;
         $newEventID = Event::find($id);
         $newEventID->users()->attach($userID);
+
         return redirect()->route('home');
    }
    public function leaveEvent($id) {
@@ -131,6 +140,7 @@ class EventController extends Controller
         $newEventID->users()->detach($userID);
         return redirect()->route('home');
    }
+    
    
     /**
      * Show the form for editing the specified resource.
