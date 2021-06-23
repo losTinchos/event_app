@@ -13,15 +13,16 @@
     
         <!-- Javascript -->
     <script>
+        /*
+        window.onload = function(){
         setInterval(() => {
-            let button = document.querySelector(".carousel-control")
-            button.onclick = slidermove
-
+            document.querySelector(".carousel-control").onclick = slidermove();
             function slidermove() {
                 alert('I am foo!');
-                return false;
             }
-        }, 5000);
+        }, 4000);
+}   
+*/
     </script>
 </head>
 <body>
