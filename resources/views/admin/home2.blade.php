@@ -31,7 +31,6 @@
                     <h4 class="text-aqua">MASTER CLASS</h4>
                     <h2 class="font-bold text-xl text-aqua">PHP for noobs</h2>
                     <p class="text-white">This talk is an introduction to one of the most popular back-end languages</p>
-                    <x-t-btn-yellow></x-t-btn-yellow>
                 </div>
             </div>
             <div style="height: 55vh">
@@ -50,35 +49,23 @@
                                 <p class="bg-aqua-light" style="width: fit-content">29 places / 1 available</p>
                                 <p>{{ $event->description }}</p>
                                 <div class="inline-flex space-x-10">
+                                    <button>
+                                        <a href="/edit/{{ $event->id }}">
+                                         <svg xmlns="http://www.w3.org/2000/svg%22" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                          </svg>
+                                        </a>  
+                                    </button>
+                                    <button>
+                                        <a href="/delete/{{ $event->id }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg%22" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                        </a>  
+                                    </button>
                                     <a href="/event/{{ $event->id }}">
                                         <button class="text-blue font-bold">Read More</button>
                                     </a>
-
-                                    @php
-                                        $whichButton = 'Join Event';
-                                    @endphp
-                                    @if (Auth::check())
-                                        @foreach ($event_user as $myEvent)
-                                            @if ($myEvent->id == $event->id)
-                                            @php
-                                                $whichButton = 'Leave Event';
-                                            @endphp
-                                            @endif
-                                        @endforeach
-                                        @if ($whichButton == 'Join Event')
-                                        <a href="/subscribe/{{ $event->id }}">
-                                            <button class="text-blue font-bold">{{$whichButton}}</button>
-                                        </a>
-                                    @else
-                                        <a href="/unsubscribe/{{ $event->id }}">
-                                            <button class="text-red font-bold">{{$whichButton}}</button>
-                                        </a>
-                                        @endif
-                                    @else 
-                                    <a href="/login">
-                                        <button class="text-blue font-bold">{{$whichButton}}</button>
-                                    </a>
-                                    @endif
                                 </div>
                             </div>
                         </li>
@@ -95,12 +82,10 @@
                     </svg>
                 </button>
                 <button>
-                    <a href="{{ route('myEvents') }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-aqua" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
+                    <a href="{{ route('create') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg%22" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
                     </a>
                 </button>
                 <button>

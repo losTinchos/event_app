@@ -23,8 +23,8 @@ class EventController extends Controller
 
         $user = Auth::user();
         $event = $user->events;
-        if(Auth::user()->role === 'admin') {
-            return view('create', ['event' => $event, 'events' => $events]);
+        if($user->role === 'admin') {
+            return view('admin.home2', ['event_user' => $event, 'events' => $events]);
         }
         return view('home', ['event_user' => $event, 'events' => $events]);
     }
@@ -35,7 +35,11 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $user = Auth::user();
+        if($user->role === 'admin') {
+            return view('admin.create');
+        }
+
     }
 
     /**
@@ -47,8 +51,6 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $newEvent = request()->except('_token');
-
-        
         if (!Auth::check()) {
             return view('eventPage', ['event' => $newEvent]);
         }
@@ -57,8 +59,6 @@ class EventController extends Controller
         Event::insert($newEvent);
         return redirect()->route('home');   
     }
-
-
     /**
      * Display the specified resource.
      *
@@ -93,7 +93,7 @@ class EventController extends Controller
     {
         $event = Event::find($id);
 
-        return view ('edit',['event'=>$event]);
+        return view ('admin.edit',['event'=>$event]);
 
     }
 
@@ -109,8 +109,6 @@ class EventController extends Controller
         $event = Event::find($id);
         $event->update($request->all());
         return redirect()->route('home');
-
-
     }
 
     /**
@@ -119,10 +117,15 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function delete($id)
     {
-        //
-    }
+        $events = Event::all();
+        $user = Auth::user();
+        $event = $user->events;
 
-   
+        Event::find($id)->delete();
+
+
+        return redirect()->route('home');
+    }
 }

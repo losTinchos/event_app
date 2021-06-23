@@ -27,10 +27,11 @@ require __DIR__.'/auth.php';
 Route::get('/event/{event}' , [EventController::class , 'store'])->name('event.store');
 
 Route::get('/', [EventController::class, "index"])->name('home');
-Route::get('/create', [EventController::class, "create"])->middleware('admin')->name('create');
+Route::get('/create', [EventController::class, "create"])->name('create');
 //Route::post('/newEvent', [EventController::class, "up"])->name('up');
-Route::post('/home', [EventController::class, "store"])->name('store');
+Route::post('/admin.home2', [EventController::class, "store"])->name('store');
 Route::get('/edit/{id}', [EventController::class, "edit"])->name('edit');
+Route::get('/delete/{id}', [EventController::class, "delete"])->name('delete');
 Route::post('/update/{id}', [EventController::class, "update"])->name('update');
 Route::get('/myEvents', [EventController::class, "show"])->name('myEvents');
 Route::get('/subscribe/{id}', [EventController::class, "singUpEvent"])->name("subscribe");
