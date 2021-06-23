@@ -95,6 +95,7 @@
                             <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
                                 <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
                             </div>
+
                             <div class="w-full m-2 pl-2">
                                 <p class="text-right">03/06/2021</p>
                                 <h2 class="font-bold text-xl">{{ $event->title }}</h2>
@@ -135,14 +136,7 @@
                     @endforeach
                 </ul>
             </div>
-            {{-- <x-t-event-card1></x-t-event-card1>
-                <x-t-event-card2></x-t-event-card2>
-                <x-t-event-card1></x-t-event-card1>
-                <x-t-event-card1></x-t-event-card1> --}}
             </ul>
-
-            {{-- <x-t-navbar></x-t-navbar> --}}
-
             <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around absolute bottom-0">
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-dark" fill="none"
@@ -168,6 +162,7 @@
                     </svg>
                 </button>
                 <button>
+                    <a href="{{ route('dashboard') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-aqua" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -175,6 +170,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
+                    </a>
                 </button>
             </nav>
         </main>

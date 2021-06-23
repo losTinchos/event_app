@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+//Auth::routes();
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,7 +27,13 @@ require __DIR__.'/auth.php';
 Route::get('/event/{event}' , [EventController::class , 'store'])->name('event.store');
 
 Route::get('/', [EventController::class, "index"])->name('home');
-Route::get('/create', [EventController::class, "create"])->middleware('create');
+Route::get('/create', [EventController::class, "create"])->name('create');
+//Route::post('/newEvent', [EventController::class, "up"])->name('up');
+Route::post('/admin.home2', [EventController::class, "store"])->name('store');
+Route::get('/edit/{id}', [EventController::class, "edit"])->name('edit');
+Route::get('/delete/{id}', [EventController::class, "delete"])->name('delete');
+Route::post('/update/{id}', [EventController::class, "update"])->name('update');
 Route::get('/myEvents', [EventController::class, "show"])->name('myEvents');
 Route::get('/subscribe/{id}', [EventController::class, "singUpEvent"])->name("subscribe");
 Route::get('/unsubscribe/{id}', [EventController::class, "leaveEvent"])->name("unsubscribe");
+
