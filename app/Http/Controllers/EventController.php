@@ -18,9 +18,25 @@ class EventController extends Controller
         
     }
 
+    public function up(Event $event, Request $request)
+    {
+     
+       $event = request()->except('_token');
+
+        Event::insert($event);
+
+    
+        return redirect('newEvent')->with('mensaje','Evento agregado con éxito');
+    }
+
+
     public function index()
     {
-        $events = Event::all();
+        // $events = Event::all();
+        $events = Event::all()->sortBy('date');
+        // ->groupBy(function($events) {
+        //     return $events->date >= now() ? 'upcoming' : 'past';
+        //     });
         if (!Auth::check()) {
             return view('home', ['events' => $events]);
         }
@@ -48,11 +64,45 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Event $event)
+    public function store(Event $event, Request $request)
     {
+        // if (!Auth::check()) {
+        //     return view('eventPage', ['event' => $event]);
+        // }
+        // $user = Auth::user();
+        // $events = $user->events;
+        // return view('eventPage', ['event' => $event, 'event_user' => $events]);
+        // if(Auth::user()->role === 'admin') {
+        //     return view('create', ['event' => $event, 'events' => $events]);
+        // }
+        // $event = Event::create(["title"=>$request->title,
+        //                     "description"=>$request->description,
+        //                     "ful_description"=>$request->full_description,
+        //                     "image"=>$request->image,
+        //                     "date"=>$request->date]);
+
+        
+                            
+        // $event->save();
+        // return redirect()->route('home');
+
+        $request->validated();
+
         $user = Auth::user();
-        $events = $user->events;
-        return view('eventPage', ['event' => $event, 'event_user' => $events]);
+
+        $event = new Event();
+        $event->user()->associate($user);
+        // $url_image = $this->upload($request->file('image'));
+        // $event->image = $url_image;
+        $event->title = $request->input('title');
+        $event->description = $request->input('description');
+
+        $res = $event->save();
+
+        if ($res) {
+            return response()->json(['message' => 'Post create succesfully'], 201);
+        }
+        return response()->json(['message' => 'Error to create post'], 500);
     }
 
     /**
@@ -62,6 +112,9 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show() {
+        if (!Auth::check()) {
+            return view('myEvents');
+        }
         $user = Auth::user();
         $event = $user->events;
         return view('myEvents', ['event_user' => $event]);
