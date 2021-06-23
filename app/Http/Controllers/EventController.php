@@ -19,6 +19,18 @@ class EventController extends Controller
         
     }
 
+    public function up(Event $event, Request $request)
+    {
+     
+       $event = request()->except('_token');
+
+        Event::insert($event);
+
+    
+        return redirect('newEvent')->with('mensaje','Evento agregado con éxito');
+    }
+
+
     public function index()
     {
         $events = Event::paginate(15);

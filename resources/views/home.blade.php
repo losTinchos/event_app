@@ -107,11 +107,11 @@
                                 <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
                             </div>
                             <div class="w-full m-2 pl-2">
-                                <p class="text-right">03/06/2021</p>
+                                <p class="text-right">{{ $event->date }}</p>
                                 <h2 class="font-bold text-xl">{{ $event->title }}</h2>
-                                <p class="bg-aqua-light" style="width: fit-content">29 places / 1 available</p>
+                                <p class="bg-aqua-light" style="width: fit-content">{{ $event->capacity }} places / 1 available</p>
                                 <p>{{ $event->description }}</p>
-                                <div class="inline-flex space-x-10">
+                                <div class="inline-flex space-x-10">    
                                     <a href="/event/{{ $event->id }}">
                                         <button class="text-blue font-bold">Read More</button>
                                     </a>
