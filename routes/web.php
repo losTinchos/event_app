@@ -24,7 +24,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/event/{event}' , [EventController::class , 'store'])->name('event.store');
+Route::get('/event/{event}' , [EventController::class , 'readMore']);
+
 
 // is_role:admin 
 Route::get('/', [EventController::class, "index"])->name('home');

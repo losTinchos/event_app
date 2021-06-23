@@ -37,7 +37,8 @@
                 <div class="flex my-6">
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox ">
-                    <span class="ml-2 text-blueGray-500">Subscribe me </span>
+                    <span class="ml-2 text-blueGray-500">Highlight
+                    </span>
                 </label>
                 </div>
                 <div class="inline-flex flex-wrap items-center justify-between ">

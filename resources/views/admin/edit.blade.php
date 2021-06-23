@@ -37,11 +37,14 @@
                 <div class="flex my-6">
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox ">
-                    <span class="ml-2 text-blueGray-500">Subscribe me </span>
+                    <span class="ml-2 text-blueGray-500">Highlight
+                    </span>
                 </label>
                 </div>
                 <div class="inline-flex flex-wrap items-center justify-between ">
-                <button type="submit" class="w-full px-4 py-2 my-2 font-medium text-blue-600 transition duration-500 ease-in-out transform bg-blue-100 border-blueGray-100 rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blue-200 hover:text-blue-900"> Edit </button>
+                <button type="submit" class="w-full px-4 py-2 my-2 font-medium text-blue-600 transition duration-500 
+                ease-in-out transform bg-blue-100 border-blueGray-100 rounded-md focus:shadow-outline focus:outline-none 
+                focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blue-200 hover:text-blue-900"> Save </button>
             </div>
         </section>
     </form>
