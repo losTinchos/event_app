@@ -78,12 +78,22 @@ class EventController extends Controller
         $event = $user->events;
         return view('myEvents', ['event_user' => $event]);
    }
+
+   public function readMore(Event $event){
+    if (!Auth::check()) {
+        return view('eventPage', ['event' => $event]);
+    }
+    $user = Auth::user();
+    $events = $user->events;
+    return view('eventPage', ['event' => $event, 'event_user' => $events]);
+
+   }
    
    public function singUpEvent($id) {
         $userID = Auth::user()->id;
         $newEventID = Event::find($id);
         $newEventID->users()->attach($userID);
-        // SendEmail::dispatch(Auth::user()->email, "EVENT NOTIFICATION");
+        //SendEmail::dispatch(Auth::user()->email, "EVENT NOTIFICATION");
         return redirect()->route('home');
    }
 
