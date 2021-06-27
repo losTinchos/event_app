@@ -10,20 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <!-- Javascript -->
-    <script>
-        /*
-            window.onload = function(){
-            setInterval(() => {
-                document.querySelector(".carousel-control").onclick = slidermove();
-                function slidermove() {
-                    alert('I am foo!');
-                }
-            }, 4000);
-    }   
-    */
-    </script>
 </head>
 
 <body>
@@ -57,7 +43,7 @@
                             </div>
                         @endfor
                     </div>
-                    @for ($i = 2; $i < count($events); $i++)
+                    @for ($i = 2; $i < 5; $i++)
                         <input class="carousel-open" type="radio" id="carousel-{{ $i }}" name="carousel"
                             aria-hidden="true" hidden="">
                         <div class="carousel-item">
@@ -76,7 +62,7 @@
                             </div>
                         </div>
                     @endfor
-                    @for ($i = 1; $i < ($end = count($events)); $i++)
+                    @for ($i = 1; $i < ($end = 5); $i++)
                         @php
                             $prev = $i === 1 ? $end - 1 : $i - 1;
                             $next = $i === $end - 1 ? 1 : $i + 1;
@@ -87,7 +73,7 @@
                             class="carousel-control next control-{{ $i }}">›</label>
                     @endfor
                     <ol class="carousel-indicators">
-                        @for ($i = 1; $i < count($events); $i++)
+                        @for ($i = 1; $i < 5; $i++)
                             <li>
                                 <label for="carousel-{{ $i }}" class="carousel-bullet">•</label>
                             </li>
