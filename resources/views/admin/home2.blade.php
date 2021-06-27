@@ -44,9 +44,9 @@
                             </div>
 
                             <div class="w-full m-2 pl-2">
-                                <p class="text-right">03/06/2021</p>
+                                <p class="text-right">{{ $event->date }}</p>
                                 <h2 class="font-bold text-xl">{{ $event->title }}</h2>
-                                <p class="bg-aqua-light" style="width: fit-content">29 places / 1 available</p>
+                                <p class="bg-aqua-light" style="width: fit-content">{{ $event->capacity }} places / 1 available</p>
                                 <p>{{ $event->description }}</p>
                                 <div class="inline-flex space-x-10">
                                     <button>
@@ -70,6 +70,7 @@
                             </div>
                         </li>
                     @endforeach
+                    <?php echo $events->render(); ?>
                 </ul>
             </div>
             </ul>
