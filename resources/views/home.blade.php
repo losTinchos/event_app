@@ -10,11 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script type="text/javascript" >
+        function truncateText(maxLength, idText) {
+        let allTexts =  document.querySelectorAll(idText);
+        for (let i = 0; i < allTexts.length; i++){
+            let truncated = document.querySelectorAll(idText)[i].innerHTML;
+            if (truncated.length > maxLength) {
+                truncated = truncated.substr(0,maxLength) + '...';
+            }
+            document.querySelectorAll(idText)[i].innerText = truncated;
+            }
+        }
+        window.onload = function() {
+            truncateText(120, "#text-short")
+        }
+    </script>
 </head>
 
 <body>
     <div class="h-full w-full">
-        <header style="height: 10vh" class="flex justify-between">
+        <header class="flex justify-between">
             <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>"
                 alt="logo">
             @if (Auth::check())
@@ -24,31 +39,10 @@
         <main>
             <div class="carousel">
                 <div class="carousel-inner">
-                    <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true"
-                        hidden="" checked="checked">
-                    <div class="carousel-item">
-                        @for ($i = 1; $i < 2; $i++)
-                            <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-blue-dark"
-                                style="height: 25vh">
-                                <img class="h-28 p-3 pt-5"
-                                    src="<?php echo asset('storage/images/gear.png'); ?>"
-                                    alt="">
-                                <div class="flex-1">
-                                    <p class="text-aqua text-right">{{ $events[$i]->created_at }}</p>
-                                    <h4 class="text-aqua">{{ $events[$i]->title }}</h4>
-                                    <h2 class="font-bold text-xl text-aqua">{{ $events[$i]->description }}</h2>
-                                    <p class="text-white">{{ $events[$i]->full_description }}</p>
-                                    <x-t-btn-yellow></x-t-btn-yellow>
-                                </div>
-                            </div>
-                        @endfor
-                    </div>
-                    @for ($i = 2; $i < 5; $i++)
-                        <input class="carousel-open" type="radio" id="carousel-{{ $i }}" name="carousel"
-                            aria-hidden="true" hidden="">
+                    @for ($i = 1; $i < 5; $i++)
+                        <input class="carousel-open" type="radio" id="carousel-{{ $i }}" name="carousel" aria-hidden="true" hidden="" @if($i === 1) checked="checked" @endif>
                         <div class="carousel-item">
-                            <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-blue-dark"
-                                style="height: 25vh">
+                            <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-blue-dark">
                                 <img class="h-28 p-3 pt-5"
                                     src="<?php echo asset('storage/images/gear.png'); ?>"
                                     alt="">
@@ -56,7 +50,7 @@
                                     <p class="text-aqua text-right">{{ $events[$i]->created_at }}</p>
                                     <h4 class="text-aqua">{{ $events[$i]->title }}</h4>
                                     <h2 class="font-bold text-xl text-aqua">{{ $events[$i]->description }}</h2>
-                                    <p class="text-white">{{ $events[$i]->full_description }}</p>
+                                    <p id="text-short" class="text-white">{{ $events[$i]->full_description }}</p>
                                     <x-t-btn-yellow></x-t-btn-yellow>
                                 </div>
                             </div>
@@ -83,11 +77,11 @@
             </div>
         </div>
         </div>
-            <div style="height: 51vh">
+        </div>
+            <div style="height: 58vh">
                 <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full">
-                    <!--bg-blue-dark bg-blue-->
                     @foreach ($events as $event)
-                        <li style="width: 24rem;"
+                        <li style="width: 24rem; height: max-content"
                             class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
                             <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
                                 <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
