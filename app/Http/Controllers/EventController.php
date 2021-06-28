@@ -32,26 +32,31 @@ class EventController extends Controller
     
         return redirect('newEvent')->with('mensaje','Evento agregado con éxito');
     }
-
+    function usersSigned($id) {
+        $event = Event::find($id);
+        return $event->users;
+   }
 
     public function index()
     {
-        $events = Event::paginate(15);
-        /*->groupBy(function($event) {
+        $allevents = Event::all();
+        // allevents variable creada para el slider
+        $events = Event::all()->sortByDesc('date')
+        ->groupBy(function($event) {
             $event['attending'] = count($this->usersSigned($event->id));
             $event['remaining'] = $event->capacity - $event->attending;
             return $event->date < now() ? 'past' : 'upcoming';
             });
-            */
+            
         if (!Auth::check()) {
-            return view('home', ['events' => $events]);
+            return view('home', ['events' => $events, "allevents" => $allevents]);
         }
         $user = Auth::user();
         $event = $user->events;
         if($user->role === 'admin') {
-            return view('admin.home2', ['event_user' => $event, 'events' => $events]);
+            return view('admin.home2', ['event_user' => $event, 'events' => $events, "allevents" => $allevents]);
         }
-        return view('home', ['event_user' => $event, 'events' => $events]);
+        return view('home', ['event_user' => $event, 'events' => $events, "allevents" => $allevents]);
     }
     /**
      * Show the form for creating a new resource.
@@ -123,6 +128,7 @@ class EventController extends Controller
         $newEventID->users()->detach($userID);
         return redirect()->route('home');
    }
+    
    
     /**
      * Show the form for editing the specified resource.

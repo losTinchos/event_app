@@ -12,15 +12,15 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script type="text/javascript" >
+    <script type="text/javascript">
         function truncateText(maxLength, idText) {
-        let allTexts =  document.querySelectorAll(idText);
-        for (let i = 0; i < allTexts.length; i++){
-            let truncated = document.querySelectorAll(idText)[i].innerHTML;
-            if (truncated.length > maxLength) {
-                truncated = truncated.substr(0,maxLength) + '...';
-            }
-            document.querySelectorAll(idText)[i].innerText = truncated;
+            let allTexts = document.querySelectorAll(idText);
+            for (let i = 0; i < allTexts.length; i++) {
+                let truncated = document.querySelectorAll(idText)[i].innerHTML;
+                if (truncated.length > maxLength) {
+                    truncated = truncated.substr(0, maxLength) + '...';
+                }
+                document.querySelectorAll(idText)[i].innerText = truncated;
             }
         }
         window.onload = function() {
@@ -40,19 +40,21 @@
         </header>
         <main>
             <div class="carousel">
-                <div class="carousel-inner">
+                 <div class="carousel-inner">
                     @for ($i = 1; $i < 5; $i++)
-                        <input class="carousel-open" type="radio" id="carousel-{{ $i }}" name="carousel" aria-hidden="true" hidden="" @if($i === 1) checked="checked" @endif>
+                        <input class="carousel-open" type="radio" id="carousel-{{ $i }}" name="carousel"
+                            aria-hidden="true" hidden="" @if ($i === 1) checked="checked" @endif>
                         <div class="carousel-item">
-                            <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-blue-dark">
+                            <div
+                                class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-blue-dark">
                                 <img class="h-28 p-3 pt-5"
                                     src="<?php echo asset('storage/images/gear.png'); ?>"
                                     alt="">
                                 <div class="flex-1">
-                                    <p class="text-aqua text-right">{{ $events[$i]->created_at }}</p>
-                                    <h4 class="text-aqua">{{ $events[$i]->title }}</h4>
-                                    <h2 class="font-bold text-xl text-aqua">{{ $events[$i]->description }}</h2>
-                                    <p id="text-short" class="text-white">{{ $events[$i]->full_description }}</p>
+                                    <p class="text-aqua text-right">{{ $allevents[$i]->created_at }}</p>
+                                    <h4 class="text-aqua">{{ $allevents[$i]->title }}</h4>
+                                    <h2 class="font-bold text-xl text-aqua">{{ $allevents[$i]->description }}</h2>
+                                    <p id="text-short" class="text-white">{{ $allevents[$i]->full_description }}</p>
                                     <x-t-btn-yellow></x-t-btn-yellow>
                                 </div>
                             </div>
@@ -90,51 +92,59 @@
                     <div class="w-full bg-white rounded overflow-x-hidden flex snap-x">
                       <div class="snap-start w-full h-full flex items-center justify-center flex-shrink-0" id="future-events">
                         <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full" >
-                            @foreach ($events as $event)
-                                <li style="width: 24rem; height: max-content"
-                                    class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
-                                    <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
-                                        <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
-                                    </div>
-                                    <div class="w-full m-2 pl-2">
-                                        <p class="text-right">{{ $event->date }}</p>
-                                        <h2 class="font-bold text-xl">{{ $event->title }}</h2>
-                                        <p class="bg-aqua-light" style="width: fit-content">{{ $event->capacity }} places / 1 available</p>
-                                        <p>{{ $event->description }}</p>
-                                        <div class="inline-flex space-x-10">    
-                                            <a href="/event/{{ $event->id }}">
-                                                <button class="text-blue font-bold">Read More</button>
-                                            </a>
-                                            @php
-                                                $whichButton = 'Join Event';
-                                            @endphp
-                                            @if (Auth::check())
-                                                @foreach ($event_user as $myEvent)
-                                                    @if ($myEvent->id == $event->id)
+                            @foreach ($events as $groupName => $group)
+                        <h1>{{ $groupName }}</h1>
+                        @foreach ($group as $event)
+                            <li style="width: 24rem; height: max-content"
+                                class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
+                                <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
+                                    <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
+                                </div>
+                                <div class="w-full m-2 pl-2">
+                                    <p class="text-right">{{ $event->date }}</p>
+                                    <h2 class="font-bold text-xl">{{ $event->title }}</h2>
+                                    <p class="bg-aqua-light" style="width: fit-content">{{ $event->capacity }} places
+                                        /{{ $event->remaining }} available</p>
+                                    <p>{{ $event->description }}</p>
+                                    <div class="inline-flex space-x-10">
+                                        <a href="/event/{{ $event->id }}">
+                                            <button class="text-blue font-bold">Read More</button>
+                                        </a>
+
+                                        @php
+                                            $whichButton = 'Join Event';
+                                        @endphp
+
+                                        @if (Auth::check())
+
+                                            @foreach ($event_user as $myEvent)
+                                                @if ($myEvent->id == $event->id)
                                                     @php
                                                         $whichButton = 'Leave Event';
                                                     @endphp
-                                                    @endif
-                                                @endforeach
-                                                @if ($whichButton == 'Join Event')
-                                                <a href="/subscribe/{{ $event->id }}">
-                                                    <button class="text-blue font-bold">{{$whichButton}}</button>
-                                                </a>
-                                                @else
-                                                <a href="/unsubscribe/{{ $event->id }}">
-                                                    <button class="text-red font-bold">{{$whichButton}}</button>
-                                                </a>
                                                 @endif
-                                            @else 
-                                            <a href="/login">
-                                                <button class="text-blue font-bold">{{$whichButton}}</button>
-                                            </a>
+                                            @endforeach
+
+                                            @if ($whichButton == 'Join Event')
+                                                <a href="/subscribe/{{ $event->id }}">
+                                                    <button class="text-blue font-bold">{{ $whichButton }}</button>
+                                                </a>
+                                            @else
+                                                <a href="/unsubscribe/{{ $event->id }}">
+                                                    <button class="text-red font-bold">{{ $whichButton }}</button>
+                                                </a>
                                             @endif
-                                        </div>
+                                        @else
+                                            <a href="/login">
+                                                <button class="text-blue font-bold">{{ $whichButton }}</button>
+                                            </a>
+                                        @endif
                                     </div>
-                                </li>
-                            @endforeach
-                            <?php echo $events->render(); ?>
+                                </div>
+                            </li>
+                        @endforeach
+                    @endforeach
+                    {{-- <?php echo $events->render(); ?> --}}
                         </ul>
                       </div>
                       <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-green-600" id="past-events">
@@ -142,6 +152,7 @@
                       </div>
                     </div>
                   </div>
+                </div>
             <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around absolute bottom-0">
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-dark" fill="none"
@@ -155,29 +166,21 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-aqua" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
-                    </a>
-                </button>
-                <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-aqua" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </button>
-                <button>
-                    <a href="{{ route('dashboard') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-aqua" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    </a>
-                </button>
-            </nav>
+                    </button>
+                    <button>
+                        <a href="{{ route('dashboard') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-aqua" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </a>
+                    </button>
+                </nav>
         </main>
     </div>
 

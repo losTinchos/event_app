@@ -20,7 +20,6 @@
             <p class="">@if (Auth::check()) {{auth()->user()->name}}</p> @endif
         </header>
         <main style="height: 90vh">
-            <div style="height: inherit">
             <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full">
             <!--bg-blue-dark bg-blue-->
             @if (Auth::check())
@@ -32,7 +31,8 @@
                     <div class="w-full m-2 pl-2">
                         <p class="text-right">03/06/2021</p>
                         <h2 class="font-bold text-xl">{{$event->title}}</h2>
-                        <p class="bg-aqua-light" style="width: fit-content">29 places / 1 available</p>
+                        <p class="bg-aqua-light" style="width: fit-content">{{ $event->capacity }} places
+                            /{{ $event->remaining }} available</p>
                         <p>{{$event->description}}</p>
                         <div class="inline-flex space-x-10">
                                 <button class="text-blue font-bold">Read More</button>
@@ -40,7 +40,6 @@
                             <button class="text-red font-bold" >Leave Event</button>
                             </a>
                         </div>
-                    </div>
                 </li>
                 @endforeach
             @endif

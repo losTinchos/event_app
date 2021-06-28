@@ -17,7 +17,7 @@
         <section class="w-screen h-2/5 flex justify-center flex-col items-center bg-blue-dark">
             <h3 class="text-white">{{ $event->title }}</h3>
             <h2 class="text-white">{{ $event->description }}</h2>
-            <img class="h-44" src="<?php echo asset('storage/images/coding.png'); ?>" />
+            <img class="h-44" src="{{ $event->image }}" />
         </section>
         <section class="w-screen h-3/5">
             <div class="flex space-x-8 justify-center pt-4">
@@ -25,7 +25,8 @@
                     <p>{{ $event->date }}</p>
                 </div>
                 <div class="bg-aqua">
-                    <p>26 places / 1 available</p>
+                    <p class="bg-aqua-light" style="width: fit-content">{{ $event->capacity }} places
+                        /{{ $event->remaining }} available</p>
                 </div>
             </div>
             <div class="p-8">

@@ -11,69 +11,130 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script type="text/javascript">
+        function truncateText(maxLength, idText) {
+            let allTexts = document.querySelectorAll(idText);
+            for (let i = 0; i < allTexts.length; i++) {
+                let truncated = document.querySelectorAll(idText)[i].innerHTML;
+                if (truncated.length > maxLength) {
+                    truncated = truncated.substr(0, maxLength) + '...';
+                }
+                document.querySelectorAll(idText)[i].innerText = truncated;
+            }
+        }
+        window.onload = function() {
+            truncateText(120, "#text-short")
+        }
+    </script>
 </head>
 
 <body>
     <div class="h-full w-full">
-        <header style="height: 10vh" class="flex justify-between">
+        <header class="flex justify-between">
             <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>"
                 alt="logo">
                 @if (Auth::check())
                     <p class="">{{Auth::user()->name}}</p>
                 @endif
         </header>
-        <main style="height: 90vh">
-            <div class="inline-flex container p-4 bg-blue-dark" style="height: 25vh">
-                <img class="h-28 p-3 pt-5"
-                    src="<?php echo asset('storage/images/gear.png'); ?>" alt="">
-                <div class="flex-1">
-                    <p class="text-aqua text-right">03/06/2021</p>
-                    <h4 class="text-aqua">MASTER CLASS</h4>
-                    <h2 class="font-bold text-xl text-aqua">PHP for noobs</h2>
-                    <p class="text-white">This talk is an introduction to one of the most popular back-end languages</p>
-                </div>
-            </div>
-            <div style="height: 55vh">
-                <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full">
-                    <!--bg-blue-dark bg-blue-->
-                    @foreach ($events as $event)
-                        <li style="width: 24rem;"
-                            class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
-                            <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
-                                <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
-                            </div>
+        <main style="height: 86vh">
+            <div class="carousel">
+                <div class="carousel-inner">
+                   @for ($i = 1; $i < 5; $i++)
+                       <input class="carousel-open" type="radio" id="carousel-{{ $i }}" name="carousel"
+                           aria-hidden="true" hidden="" @if ($i === 1) checked="checked" @endif>
+                       <div class="carousel-item">
+                           <div
+                               class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-blue-dark">
+                               <img class="h-28 p-3 pt-5"
+                                   src="<?php echo asset('storage/images/gear.png'); ?>"
+                                   alt="">
+                               <div class="flex-1">
+                                   <p class="text-aqua text-right">{{ $allevents[$i]->created_at }}</p>
+                                   <h4 class="text-aqua">{{ $allevents[$i]->title }}</h4>
+                                   <h2 class="font-bold text-xl text-aqua">{{ $allevents[$i]->description }}</h2>
+                                   <p id="text-short" class="text-white">{{ $allevents[$i]->full_description }}</p>
+                               </div>
+                           </div>
+                       </div>
+                   @endfor
+                   @for ($i = 1; $i < ($end = 5); $i++)
+                       @php
+                           $prev = $i === 1 ? $end - 1 : $i - 1;
+                           $next = $i === $end - 1 ? 1 : $i + 1;
+                       @endphp
+                       <label for="carousel-{{ $prev }}"
+                           class="carousel-control prev control-{{ $i }}">‹</label>
+                       <label for="carousel-{{ $next }}"
+                           class="carousel-control next control-{{ $i }}">›</label>
+                   @endfor
+                   <ol class="carousel-indicators">
+                       @for ($i = 1; $i < 5; $i++)
+                           <li>
+                               <label for="carousel-{{ $i }}" class="carousel-bullet">•</label>
+                           </li>
+                       @endfor
+                   </ol>
+               </div>
+           </div>
+           <div style="height: 60vh">
+            <ol>
+            <li class="flex flex-wrap justify-around">
+                <a href="#future-events">FUTURE EVENTS</a>
+                <a href="#past-events">PAST EVENTS</a>
+            </li>
+            </ol>
+           
+            <div class="flex flex-col items-center h-full">
+                <div class="w-full bg-white rounded overflow-x-hidden flex snap-x">
+                  <div class="snap-start w-full h-full flex items-center justify-center flex-shrink-0" id="future-events">
+                    <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full" >
+                        @foreach ($events as $groupName => $group)
+                    <h1>{{ $groupName }}</h1>
+                    @foreach ($group as $event)
+                    <li style="width: 24rem;"
+                    class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
+                    <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
+                        <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
+                    </div>
 
-                            <div class="w-full m-2 pl-2">
-                                <p class="text-right">{{ $event->date }}</p>
-                                <h2 class="font-bold text-xl">{{ $event->title }}</h2>
-                                <p class="bg-aqua-light" style="width: fit-content">{{ $event->capacity }} places / 1 available</p>
-                                <p>{{ $event->description }}</p>
-                                <div class="inline-flex space-x-10">
-                                    <button>
-                                        <a href="/edit/{{ $event->id }}">
-                                         <svg xmlns="http://www.w3.org/2000/svg%22" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                          </svg>
-                                        </a>  
-                                    </button>
-                                    <button>
-                                        <a href="/delete/{{ $event->id }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg%22" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </a>  
-                                    </button>
-                                    <a href="/event/{{ $event->id }}">
-                                        <button class="text-blue font-bold">Read More</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
+                    <div class="w-full m-2 pl-2">
+                        <p class="text-right">{{ $event->date }}</p>
+                        <h2 class="font-bold text-xl">{{ $event->title }}</h2>
+                        <p class="bg-aqua-light" style="width: fit-content">{{ $event->capacity }} places / 1 available</p>
+                        <p>{{ $event->description }}</p>
+                        <div class="inline-flex space-x-10">
+                            <button>
+                                <a href="/edit/{{ $event->id }}">
+                                 <svg xmlns="http://www.w3.org/2000/svg%22" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                  </svg>
+                                </a>  
+                            </button>
+                            <button>
+                                <a href="/delete/{{ $event->id }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg%22" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </a>  
+                            </button>
+                            <a href="/event/{{ $event->id }}">
+                                <button class="text-blue font-bold">Read More</button>
+                            </a>
+                        </div>
+                    </div>
+                </li>
                     @endforeach
-                    <?php echo $events->render(); ?>
-                </ul>
+                @endforeach
+                {{-- <?php echo $events->render(); ?> --}}
+                    </ul>
+                  </div>
+                  <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-green-600" id="past-events">
+                    hola 2
+                  </div>
+                </div>
+              </div>
             </div>
-            </ul>
             <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around absolute bottom-0">
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-dark" fill="none"
