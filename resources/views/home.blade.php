@@ -16,7 +16,7 @@
 <body>
     <div class="h-full w-full">
         <header style="height: 10vh" class="flex justify-between">
-            <img class="h-8" src="<?php echo asset('storage/images/logo.png'); ?>"
+            <img class="h-8" src="@php echo asset('storage/images/logo.png'); @endphp"
                 alt="logo">
             @if (Auth::check())
                 <p class="">{{ Auth::user()->name }}</p>
@@ -25,7 +25,7 @@
         <main style="height: 90vh">
             <div class="inline-flex container p-4 bg-blue-dark" style="height: 25vh">
                 <img class="h-28 p-3 pt-5"
-                    src="<?php echo asset('storage/images/gear.png'); ?>" alt="">
+                    src="@php echo asset('storage/images/gear.png'); @endphp" alt="">
                 <div class="flex-1">
                     <p class="text-aqua text-right">03/06/2021</p>
                     <h4 class="text-aqua">MASTER CLASS</h4>
@@ -41,11 +41,7 @@
                         // echo($events)
                     @endphp
                     @foreach ($events as $groupName => $group)
-                    <h1>
-                        @php
-                            echo($groupName)
-                        @endphp
-                    </h1>
+                    <h1>{{ $groupName }}</h1>
                     @foreach ($group as $event)
                     <li style="width: 24rem;"
                         class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
