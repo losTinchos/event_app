@@ -25,7 +25,7 @@
             <!--bg-blue-dark bg-blue-->
             @if (Auth::check())
                 @foreach ($event_user as $event)
-                <li style="width: 24rem;" class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
+                <li style="width: 24rem; height: max-content" class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
                     <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
                         <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
                     </div>
