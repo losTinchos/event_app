@@ -32,17 +32,21 @@ class EventController extends Controller
     
         return redirect('newEvent')->with('mensaje','Evento agregado con éxito');
     }
-
+    function usersSigned($id) {
+        $event = Event::find($id);
+        return $event->users;
+   }
 
     public function index()
     {
-        $events = Event::paginate(15);
-        /*->groupBy(function($event) {
+        
+        $events = Event::all()->sortByDesc('date')
+        ->groupBy(function($event) {
             $event['attending'] = count($this->usersSigned($event->id));
             $event['remaining'] = $event->capacity - $event->attending;
             return $event->date < now() ? 'past' : 'upcoming';
             });
-            */
+            
         if (!Auth::check()) {
             return view('home', ['events' => $events]);
         }
@@ -123,6 +127,7 @@ class EventController extends Controller
         $newEventID->users()->detach($userID);
         return redirect()->route('home');
    }
+    
    
     /**
      * Show the form for editing the specified resource.
