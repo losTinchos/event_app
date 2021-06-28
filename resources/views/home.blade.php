@@ -77,58 +77,71 @@
                     </ol>
                 </div>
             </div>
-        </div>
-        </div>
-        </div>
+ 
             <div style="height: 58vh">
-                <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full">
-
-                    @foreach ($events as $event)
-                        <li style="width: 24rem; height: max-content"
-                            class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
-                            <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
-                                <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
-                            </div>
-                            <div class="w-full m-2 pl-2">
-                                <p class="text-right">{{ $event->date }}</p>
-                                <h2 class="font-bold text-xl">{{ $event->title }}</h2>
-                                <p class="bg-aqua-light" style="width: fit-content">{{ $event->capacity }} places / 1 available</p>
-                                <p>{{ $event->description }}</p>
-                                <div class="inline-flex space-x-10">    
-                                    <a href="/event/{{ $event->id }}">
-                                        <button class="text-blue font-bold">Read More</button>
-                                    </a>
-                                    @php
-                                        $whichButton = 'Join Event';
-                                    @endphp
-                                    @if (Auth::check())
-                                        @foreach ($event_user as $myEvent)
-                                            @if ($myEvent->id == $event->id)
+                <ol>
+                <li class="flex flex-wrap justify-around">
+                    <a href="#future-events">FUTURE EVENTS</a>
+                    <a href="#past-events">PAST EVENTS</a>
+                </li>
+                </ol>
+               
+                <div class="flex flex-col items-center h-full">
+                    <div class="w-full bg-white rounded overflow-x-hidden flex snap-x">
+                      <div class="snap-start w-full h-full flex items-center justify-center flex-shrink-0" id="future-events">
+                        <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full" >
+                            @foreach ($events as $event)
+                                <li style="width: 24rem; height: max-content"
+                                    class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
+                                    <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
+                                        <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
+                                    </div>
+                                    <div class="w-full m-2 pl-2">
+                                        <p class="text-right">{{ $event->date }}</p>
+                                        <h2 class="font-bold text-xl">{{ $event->title }}</h2>
+                                        <p class="bg-aqua-light" style="width: fit-content">{{ $event->capacity }} places / 1 available</p>
+                                        <p>{{ $event->description }}</p>
+                                        <div class="inline-flex space-x-10">    
+                                            <a href="/event/{{ $event->id }}">
+                                                <button class="text-blue font-bold">Read More</button>
+                                            </a>
                                             @php
-                                                $whichButton = 'Leave Event';
+                                                $whichButton = 'Join Event';
                                             @endphp
+                                            @if (Auth::check())
+                                                @foreach ($event_user as $myEvent)
+                                                    @if ($myEvent->id == $event->id)
+                                                    @php
+                                                        $whichButton = 'Leave Event';
+                                                    @endphp
+                                                    @endif
+                                                @endforeach
+                                                @if ($whichButton == 'Join Event')
+                                                <a href="/subscribe/{{ $event->id }}">
+                                                    <button class="text-blue font-bold">{{$whichButton}}</button>
+                                                </a>
+                                                @else
+                                                <a href="/unsubscribe/{{ $event->id }}">
+                                                    <button class="text-red font-bold">{{$whichButton}}</button>
+                                                </a>
+                                                @endif
+                                            @else 
+                                            <a href="/login">
+                                                <button class="text-blue font-bold">{{$whichButton}}</button>
+                                            </a>
                                             @endif
-                                        @endforeach
-                                        @if ($whichButton == 'Join Event')
-                                        <a href="/subscribe/{{ $event->id }}">
-                                            <button class="text-blue font-bold">{{$whichButton}}</button>
-                                        </a>
-                                        @else
-                                        <a href="/unsubscribe/{{ $event->id }}">
-                                            <button class="text-red font-bold">{{$whichButton}}</button>
-                                        </a>
-                                        @endif
-                                    @else 
-                                    <a href="/login">
-                                        <button class="text-blue font-bold">{{$whichButton}}</button>
-                                    </a>
-                                    @endif
-                                </div>
-                            </div>
-                        </li>
-                    @endforeach
-                    <?php echo $events->render(); ?>
-                </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                            <?php echo $events->render(); ?>
+                        </ul>
+                      </div>
+                      <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-green-600" id="past-events">
+                        hola 2
+                      </div>
+                    </div>
+                  </div>
             <nav class="h-20 bg-aqua-light inline-flex min-w-full justify-around absolute bottom-0">
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-dark" fill="none"
