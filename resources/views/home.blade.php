@@ -82,6 +82,7 @@
         </div>
             <div style="height: 58vh">
                 <ul class="flex flex-wrap justify-center align-center relative w-full overflow-auto h-full">
+
                     @foreach ($events as $event)
                         <li style="width: 24rem; height: max-content"
                             class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">

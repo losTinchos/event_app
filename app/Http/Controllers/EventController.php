@@ -21,7 +21,10 @@ class EventController extends Controller
 
     public function up(Event $event, Request $request)
     {
-     
+        /*function usersSigned($id) {
+            $event = Event::find($id);
+            return $event->users;
+       }  */  
        $event = request()->except('_token');
 
         Event::insert($event);
@@ -33,11 +36,16 @@ class EventController extends Controller
 
     public function index()
     {
-        $events = Event::paginate(15)->sortByDesc('date');
+        $events = Event::paginate(15);
+        /*->groupBy(function($event) {
+            $event['attending'] = count($this->usersSigned($event->id));
+            $event['remaining'] = $event->capacity - $event->attending;
+            return $event->date < now() ? 'past' : 'upcoming';
+            });
+            */
         if (!Auth::check()) {
             return view('home', ['events' => $events]);
         }
-
         $user = Auth::user();
         $event = $user->events;
         if($user->role === 'admin') {
