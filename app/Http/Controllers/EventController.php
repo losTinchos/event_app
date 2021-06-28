@@ -33,7 +33,7 @@ class EventController extends Controller
 
     public function index()
     {
-        $events = Event::paginate(15);
+        $events = Event::paginate(15)->sortByDesc('date');
         if (!Auth::check()) {
             return view('home', ['events' => $events]);
         }
