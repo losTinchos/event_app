@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmail;
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -12,11 +15,44 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function changeButton() {
+        
     }
 
+    public function up(Event $event, Request $request)
+    {
+        /*function usersSigned($id) {
+            $event = Event::find($id);
+            return $event->users;
+       }  */  
+       $event = request()->except('_token');
+
+        Event::insert($event);
+
+    
+        return redirect('newEvent')->with('mensaje','Evento agregado con éxito');
+    }
+
+
+    public function index()
+    {
+        $events = Event::paginate(15);
+        /*->groupBy(function($event) {
+            $event['attending'] = count($this->usersSigned($event->id));
+            $event['remaining'] = $event->capacity - $event->attending;
+            return $event->date < now() ? 'past' : 'upcoming';
+            });
+            */
+        if (!Auth::check()) {
+            return view('home', ['events' => $events]);
+        }
+        $user = Auth::user();
+        $event = $user->events;
+        if($user->role === 'admin') {
+            return view('admin.home2', ['event_user' => $event, 'events' => $events]);
+        }
+        return view('home', ['event_user' => $event, 'events' => $events]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +60,11 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        if($user->role === 'admin') {
+            return view('admin.create');
+        }
+
     }
 
     /**
@@ -35,29 +75,67 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newEvent = request()->except('_token');
+        if (!Auth::check()) {
+            return view('eventPage', ['event' => $newEvent]);
+        }
+        $user = Auth::user();
+        $events = $user->events;
+        Event::insert($newEvent);
+        return redirect()->route('home');   
     }
-
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
-    {
-        //
-    }
+    public function show() {
+        if (!Auth::check()) {
+            return view('myEvents');
+        }
+        $user = Auth::user();
+        $event = $user->events;
+        return view('myEvents', ['event_user' => $event]);
+   }
 
+   public function readMore(Event $event){
+    if (!Auth::check()) {
+        return view('eventPage', ['event' => $event]);
+    }
+    $user = Auth::user();
+    $events = $user->events;
+    return view('eventPage', ['event' => $event, 'event_user' => $events]);
+
+   }
+   
+   public function singUpEvent($id) {
+        $userID = Auth::user()->id;
+        $newEventID = Event::find($id);
+        $newEventID->users()->attach($userID);
+        //SendEmail::dispatch(Auth::user()->email, "EVENT NOTIFICATION");
+        return redirect()->route('home');
+   }
+
+   public function leaveEvent($id) {
+        $userID = Auth::user()->id;
+        $newEventID = Event::find($id);
+        $newEventID->users()->detach($userID);
+        return redirect()->route('home');
+   }
+   
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
-        //
+        $event = Event::find($id);
+
+        return view ('admin.edit',['event'=>$event]);
+
     }
 
     /**
@@ -67,9 +145,11 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+        $event = Event::find($id);
+        $event->update($request->all());
+        return redirect()->route('home');
     }
 
     /**
@@ -78,8 +158,15 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function delete($id)
     {
-        //
+        $events = Event::all();
+        $user = Auth::user();
+        $event = $user->events;
+
+        Event::find($id)->delete();
+
+
+        return redirect()->route('home');
     }
 }

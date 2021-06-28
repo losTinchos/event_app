@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class EventFactory extends Factory
 {
@@ -22,7 +23,11 @@ class EventFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title'=>$this->faker->name(),
+            'description'=>$this->faker->name(),
+            'full_description'=>$this->faker->text(),
+            'image'=>$this->faker->imageUrl(),
+            'date'=>$this->faker->date()
         ];
     }
 }

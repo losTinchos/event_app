@@ -17,8 +17,10 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            
-            $table->integer('participants');
+            $table->string('full_description');
+            $table->string('image')->nullable();
+            $table->date('date');
+            $table->integer('capacity')->default(24);
             $table->timestamps();
         });
     }
