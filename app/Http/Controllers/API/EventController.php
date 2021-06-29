@@ -14,11 +14,9 @@ class EventController extends Controller
         return response()->json(Event::all(), 200);
     }
 
-    public function singUpEvent($id) {
-        $userID = Auth::user()->id;
-        $newEventID = Event::find($id);
-        $newEventID->users()->attach($userID);
-        //SendEmail::dispatch(Auth::user()->email, "EVENT NOTIFICATION");
-        return redirect()->route('home');
+    function usersSigned($id) {
+        $event = Event::find($id);
+        //return $event->users; es igual a la línea 20 pero en formato json
+        return response()->json($event->users, 200);
    }
 }

@@ -2,8 +2,6 @@
 
 namespace Tests\Feature\API;
 
-use App\Http\Controllers\API\EventController;
-use App\Http\Controllers\EventController as ControllersEventController;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Models\User;
@@ -26,18 +24,19 @@ class LogUserEventsTest extends TestCase
         $response = $this->get('/api/events');
 
         $response->assertStatus(200)
-        ->assertJsonCount(2);
+                ->assertJsonCount(2);
     }
 
     public function test_checkIfSignedUpEventsLogInJson()
     {
-        $event = Event::factory(2)->create();
-        $user = User::factory(2)->create();
+        $users = User::factory(2)->create();
+        $event = Event::factory()->create();
+        
 
-        $event->user()->attach($user);
+        $event->users()->attach($users);
 
         $response = $this->get('/api/events/1/subscribers');
         $response->assertStatus(200)
-        ->assertJsonCount(2);
+                ->assertJsonCount(2);
     }
 }
