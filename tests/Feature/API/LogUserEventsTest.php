@@ -34,9 +34,8 @@ class LogUserEventsTest extends TestCase
         $event = Event::factory(2)->create();
         $user = User::factory(2)->create();
 
-        $user[0]->get(route('signUpEvent', $event[1]->id));
-        $user[1]->get(route('signUpEvent', $event[1]->id));
-        
+        $event->user()->attach($user);
+
         $response = $this->get('/api/events/1/subscribers');
         $response->assertStatus(200)
         ->assertJsonCount(2);

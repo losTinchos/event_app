@@ -20,4 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     });
 Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/1/subscribers', [EventController::class, 'index']);
-Route::get('signUpEvent', [EventController::class, 'signUpEvent'])->name('signUpEvent');
+Route::get('signUpEvent', [EventController::class, 'signUpEvent']);
