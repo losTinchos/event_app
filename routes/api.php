@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\EventController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+    });
+Route::get('/events', [EventController::class, 'index']);
+Route::get('/events/1/subscribers', [EventController::class, 'index']);
+Route::get('signUpEvent', [EventController::class, 'signUpEvent'])->name('signUpEvent');
